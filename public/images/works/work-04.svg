@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="620" viewBox="0 0 620 620">
+  <rect width="620" height="620" fill="#f2e4d7"/>
+  <rect x="0" y="0" width="620" height="300" fill="#a94444"/>
+  <text x="72" y="156" fill="#f2e4d7" font-family="Arial Narrow, Arial, Helvetica, sans-serif" font-size="88" font-weight="900" transform="rotate(-5 72 156)">MENTAL</text>
+  <text x="330" y="175" fill="#a94444" font-family="Georgia, serif" font-size="92" font-style="italic">Health</text>
+  <rect x="60" y="370" width="500" height="16" fill="#a94444"/>
+  <rect x="60" y="420" width="350" height="12" fill="#8b3737"/>
+</svg>

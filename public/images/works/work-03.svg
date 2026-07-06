@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="660" viewBox="0 0 760 660">
+  <rect width="760" height="660" fill="#dfe9e4"/>
+  <g fill="none" stroke="#1f3b32" stroke-width="7">
+    <rect x="42" y="42" width="190" height="170"/>
+    <rect x="260" y="42" width="190" height="170"/>
+    <rect x="478" y="42" width="190" height="170"/>
+    <rect x="42" y="242" width="190" height="170"/>
+    <rect x="260" y="242" width="190" height="170"/>
+    <rect x="478" y="242" width="190" height="170"/>
+  </g>
+  <text x="72" y="116" fill="#1f3b32" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">Photo Editing &amp;</text>
+  <text x="72" y="152" fill="#1f3b32" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">Retouching</text>
+  <ellipse cx="360" cy="342" rx="118" ry="48" fill="#5e8ea2"/>
+  <circle cx="546" cy="128" r="46" fill="#111827"/>
+  <rect x="90" y="465" width="550" height="26" fill="#1f3b32"/>
+  <rect x="90" y="520" width="410" height="18" fill="#6f8980"/>
+</svg>
