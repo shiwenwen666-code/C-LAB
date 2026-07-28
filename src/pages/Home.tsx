@@ -2,11 +2,14 @@ import { motion, useScroll, useSpring, useTransform, type MotionValue } from "fr
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import { Link } from "react-router-dom";
 import { useAppSettings } from "../App";
+import { AwardsSection } from "../components/AwardsSection";
+import { AbilityCard } from "../components/AbilityCard";
+import { FeaturedWorksShowcase } from "../components/FeaturedWorksShowcase";
 import { HeroCountIntro } from "../components/HeroCountIntro";
 import { LogoLoopSection } from "../components/LogoLoopSection";
 import { OrbitWorksShowcase } from "../components/OrbitWorksShowcase";
-import { SelectedWorksSection } from "../components/SelectedWorksSection";
 import { VisualDustField } from "../components/VisualDustField";
+import { personalAbilities, type Ability } from "../data/abilities";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -34,14 +37,6 @@ const aboutPreviewCopy = {
     cta: "了解更多",
   },
 };
-
-const tags = [
-  { en: "AI-powered Creator", zh: "AIGC 驱动力" },
-  { en: "Aesthetic Gatekeeper", zh: "审美守门员" },
-  { en: "Bilingual Operator", zh: "中英双语沟通者" },
-  { en: "On-site Builder", zh: "现场执行派" },
-  { en: "Hands-on Thinker", zh: "思想实践派" },
-];
 
 function splitInlineText(text: string, locale: "en" | "zh") {
   if (locale === "en") {
@@ -239,6 +234,8 @@ function ProfileSignature({ locale }: { locale: "en" | "zh" }) {
 function AboutIntroSection() {
   const { locale } = useAppSettings();
   const copy = aboutPreviewCopy[locale];
+  const [selectedAbility, setSelectedAbility] = useState<Ability | null>(null);
+  const [abilityOrigin, setAbilityOrigin] = useState<{ x: number; y: number } | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start 92%", "start 12%"] });
   const profileY = useSpring(useTransform(scrollYProgress, [0.1, 0.72], [168, 0]), { stiffness: 70, damping: 20, mass: 0.9 });
@@ -320,12 +317,26 @@ function AboutIntroSection() {
         viewport={{ once: true, margin: "-10%" }}
         transition={{ duration: 0.78, ease }}
       >
-        {tags.map((tag) => (
-          <span key={tag.en}>
-            #{tag[locale]}
-          </span>
+        {personalAbilities.map((ability) => (
+          <button
+            key={ability.id}
+            onClick={(event) => {
+              const rect = event.currentTarget.getBoundingClientRect();
+              setAbilityOrigin({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+              setSelectedAbility(ability);
+            }}
+            type="button"
+          >
+            #{ability.tag[locale]}
+          </button>
         ))}
       </motion.div>
+      <AbilityCard
+        ability={selectedAbility}
+        locale={locale}
+        onClose={() => setSelectedAbility(null)}
+        origin={abilityOrigin}
+      />
     </section>
   );
 }
@@ -390,7 +401,8 @@ export function Home() {
       <AboutIntroSection />
       <OrbitWorksShowcase />
       <LogoLoopSection />
-      <SelectedWorksSection />
+      <FeaturedWorksShowcase />
+      <AwardsSection />
     </>
   );
 }

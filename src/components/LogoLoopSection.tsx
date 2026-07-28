@@ -1,17 +1,13 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { experienceLogos, toolLogos, type LogoLoopItem } from "../data/logoLoop";
+
+const LOOP_COPIES = 6;
 
 function LogoGlyph({ item, compact = false }: { item: LogoLoopItem; compact?: boolean }) {
   const [missing, setMissing] = useState(false);
-  const initials = item.name
-    .split(/\s+|\.|-/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join("");
 
-  if (missing) {
-    return <span className={compact ? "logo-loop-fallback is-compact" : "logo-loop-fallback"}>{initials}</span>;
+  if (missing || !item.logo) {
+    return <span className={compact ? "logo-loop-fallback is-compact" : "logo-loop-fallback"} aria-hidden="true" />;
   }
 
   return (
@@ -32,7 +28,10 @@ function LogoLoopRow({
   items: LogoLoopItem[];
   variant: "experience" | "tools";
 }) {
-  const loopItems = [...items, ...items];
+  const loopItems = useMemo(
+    () => Array.from({ length: LOOP_COPIES }, () => items).flat(),
+    [items],
+  );
 
   return (
     <div className={`logo-loop-row is-${variant}`}>

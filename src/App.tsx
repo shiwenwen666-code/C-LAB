@@ -8,6 +8,7 @@ import { Navigation } from "./components/Navigation";
 import { About } from "./pages/About";
 import { Articles } from "./pages/Articles";
 import { Awards } from "./pages/Awards";
+import { AestheticIntelligenceBureau } from "./pages/AestheticIntelligenceBureau";
 import { Contact } from "./pages/Contact";
 import { Home } from "./pages/Home";
 import { HomeContra } from "./pages/HomeContra";
@@ -58,6 +59,7 @@ function PageShell() {
             <Route path="/" element={<Home />} />
             <Route path="/contra" element={<HomeContra />} />
             <Route path="/work" element={<Work />} />
+            <Route path="/work/aesthetic-intelligence-bureau" element={<AestheticIntelligenceBureau />} />
             <Route path="/work/:slug" element={<ProjectDetail />} />
             <Route path="/practice" element={<Practice />} />
             <Route path="/articles" element={<Articles />} />
@@ -76,7 +78,7 @@ function PageShell() {
 }
 
 export default function App() {
-  const [locale, setLocale] = useState<Locale>("en");
+  const [locale, setLocale] = useState<Locale>("zh");
   const [theme, setThemeState] = useState<Theme>(() => {
     const saved = window.localStorage.getItem(themeStorageKey);
     if (saved === "light" || saved === "dark") return saved;

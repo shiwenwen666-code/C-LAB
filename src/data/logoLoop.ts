@@ -1,32 +1,28 @@
 export type LogoLoopItem = {
   name: string;
-  logo: string;
+  logo?: string;
 };
 
 export const experienceLogos: LogoLoopItem[] = [
-  { name: "Alibaba.com", logo: "/logos/experience/alibaba.svg" },
-  { name: "Publicis Groupe", logo: "/logos/experience/publicis.svg" },
-  { name: "审美情报局", logo: "/logos/experience/aesthetic-intel.svg" },
-  { name: "Huawei", logo: "/logos/experience/huawei.svg" },
-  { name: "xFusion", logo: "/logos/experience/xfusion.svg" },
-  { name: "Honor of Kings", logo: "/logos/experience/honor-of-kings.svg" },
-  { name: "SUES", logo: "/logos/experience/sues.svg" },
-  { name: "ZJNU", logo: "/logos/experience/zjnu.svg" },
+  { name: "Alibaba.com", logo: "/logos/custom/experience/1.jpg" },
+  { name: "Publicis Groupe", logo: "/logos/custom/experience/2.png" },
+  { name: "审美情报局", logo: "/logos/custom/experience/3.png" },
+  { name: "SUES", logo: "/logos/custom/experience/4.png" },
+  { name: "ZJNU", logo: "/logos/custom/experience/5.jpg" },
 ];
 
 export const toolLogos: LogoLoopItem[] = [
-  { name: "Photoshop", logo: "/logos/tools/photoshop.svg" },
-  { name: "Adobe Illustrator", logo: "/logos/tools/illustrator.svg" },
-  { name: "InDesign", logo: "/logos/tools/indesign.svg" },
-  { name: "CapCut", logo: "/logos/tools/capcut.svg" },
-  { name: "Figma", logo: "/logos/tools/figma.svg" },
-  { name: "GitHub", logo: "/logos/tools/github.svg" },
-  { name: "Codex", logo: "/logos/tools/codex.svg" },
-  { name: "Claude Code", logo: "/logos/tools/claude-code.svg" },
-  { name: "Qoder", logo: "/logos/tools/qoder.svg" },
-  { name: "ComfyUI", logo: "/logos/tools/comfyui.svg" },
-  { name: "RunningHub", logo: "/logos/tools/runninghub.svg" },
-  { name: "LiblibAI", logo: "/logos/tools/liblibai.svg" },
-  { name: "Lovart", logo: "/logos/tools/lovart.svg" },
-  { name: "Flora", logo: "/logos/tools/flora.svg" },
+  { name: "Photoshop", logo: "/logos/custom/tools/1.jpg" },
+  { name: "Adobe Illustrator", logo: "/logos/custom/tools/2.jpg" },
+  { name: "CapCut", logo: "/logos/custom/tools/3.jpg" },
+  { name: "Figma", logo: "/logos/custom/tools/4.jpg" },
+  { name: "GitHub", logo: "/logos/custom/tools/5.jpg" },
+  { name: "Codex", logo: "/logos/custom/tools/6.jpg" },
+  { name: "Claude Code", logo: "/logos/custom/tools/7.jpg" },
+  { name: "Qoder", logo: "/logos/custom/tools/8.png" },
+  { name: "ComfyUI", logo: "/logos/custom/tools/9.png" },
+  { name: "RunningHub", logo: "/logos/custom/tools/10.png" },
+  { name: "LiblibAI", logo: "/logos/custom/tools/11.png" },
+  { name: "Lovart", logo: "/logos/custom/tools/12.png" },
+  { name: "Flora", logo: "/logos/custom/tools/13.png" },
 ];

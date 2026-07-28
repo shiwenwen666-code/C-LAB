@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中文 AI 生图提示词生成器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Commercial Visual Prompt Studio</p>
+        <h1>中文 AI 生图提示词生成器</h1>
+        <p class="subtitle">面向视觉设计师、商业视觉快速出图和通用工作流的本地中英双语提示词工具。</p>
+      </div>
+    </header>
+
+    <section class="workspace" aria-label="提示词生成工作区">
+      <form class="control-panel" id="promptForm">
+        <div class="form-grid">
+          <label class="field">
+            <span>一级行业</span>
+            <select id="primaryIndustry" required></select>
+          </label>
+
+          <label class="field">
+            <span>二级场景</span>
+            <select id="secondaryScene"></select>
+          </label>
+
+          <label class="field">
+            <span>三级品类</span>
+            <select id="tertiaryCategory"></select>
+          </label>
+
+          <label class="field">
+            <span>生成范围</span>
+            <select id="generationScope"></select>
+          </label>
+
+          <label class="field">
+            <span>产品具象度</span>
+            <select id="productConcreteness"></select>
+          </label>
+
+          <label class="field">
+            <span>光线</span>
+            <select id="lighting"></select>
+          </label>
+
+          <label class="field">
+            <span>材质纹理</span>
+            <select id="materials" multiple size="5"></select>
+          </label>
+
+          <label class="field">
+            <span>镜头</span>
+            <select id="lens"></select>
+          </label>
+
+          <label class="field">
+            <span>风格</span>
+            <select id="styleTone"></select>
+          </label>
+
+          <label class="field">
+            <span>构图方式</span>
+            <select id="composition"></select>
+          </label>
+
+          <label class="field">
+            <span>出图批次</span>
+            <select id="batchSize"></select>
+          </label>
+
+          <label class="field">
+            <span>提示词生成数量</span>
+            <select id="promptCount"></select>
+          </label>
+        </div>
+
+        <fieldset class="ratio-panel">
+          <legend>画幅比例与目标导出尺寸</legend>
+          <p class="size-note">提示词主要控制画面比例和构图，不能保证所有平台精确输出指定像素。若需要严格尺寸，请在生图平台参数中设置宽高，或生成后裁切/导出为目标尺寸。</p>
+          <p class="ratio-section-title">画幅比例</p>
+          <div class="ratio-grid" id="ratioGroup"></div>
+          <p class="ratio-section-title">目标导出尺寸</p>
+          <div class="custom-size">
+            <label class="field compact">
+              <span>目标导出宽度</span>
+              <input id="customWidth" type="number" min="1" inputmode="numeric" placeholder="如 1504">
+            </label>
+            <label class="field compact">
+              <span>目标导出高度</span>
+              <input id="customHeight" type="number" min="1" inputmode="numeric" placeholder="如 352">
+            </label>
+          </div>
+        </fieldset>
+
+        <label class="field full">
+          <span>补充关键词</span>
+          <input id="extraKeywords" type="text" placeholder="如：高级感、留白、真实摄影、品牌海报、通用商业素材底图">
+        </label>
+
+        <div class="actions">
+          <button class="primary" type="button" id="generateBtn">生成提示词</button>
+          <button type="button" id="shuffleBtn">换一组表达</button>
+          <button type="button" id="resetBtn">清空重置</button>
+        </div>
+      </form>
+
+      <section class="result-panel" aria-label="生成结果">
+        <div class="panel-title">
+          <div>
+            <p class="eyebrow">Generated Prompts</p>
+            <h2>生成结果</h2>
+          </div>
+          <span class="status" id="copyStatus" aria-live="polite"></span>
+        </div>
+        <div class="batch-info" id="batchInfo">image_count: 1<br>aspect_ratio: 1:1</div>
+        <div class="prompt-list" id="promptList"></div>
+      </section>
+    </section>
+
+    <section class="negative-panel" aria-label="负面提示词">
+      <div class="panel-title">
+        <div>
+          <p class="eyebrow">Negative Prompts</p>
+          <h2>负面提示词</h2>
+        </div>
+      </div>
+
+      <div class="negative-grid">
+        <div class="negative-block">
+          <div class="prompt-block-title">
+            <h3>中文负面提示词</h3>
+            <button type="button" id="copyNegativeZhBtn">复制中文负面词</button>
+          </div>
+          <textarea id="negativeZhOutput" spellcheck="false"></textarea>
+        </div>
+
+        <div class="negative-block">
+          <div class="prompt-block-title">
+            <h3>English Negative Prompt</h3>
+            <button type="button" id="copyNegativeEnBtn">Copy English Negative</button>
+          </div>
+          <textarea id="negativeEnOutput" spellcheck="false"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="share-info" aria-label="使用说明与隐私说明">
+      <div class="info-block">
+        <p class="eyebrow">How To Use</p>
+        <h2>使用说明</h2>
+        <p>选择一级行业、二级场景、产品具象度和画幅尺寸后，点击“生成提示词”，即可得到可编辑的中文提示词、English Prompt 和通用生成参数。</p>
+      </div>
+
+      <div class="info-block">
+        <p class="eyebrow">Privacy</p>
+        <h2>隐私说明</h2>
+        <p>本工具为纯前端本地规则生成，不调用 API，不上传用户输入。所有选择项、补充关键词和生成结果都仅在当前浏览器页面中处理。</p>
+      </div>
+
+      <p class="version">v1.0.0</p>
+    </section>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

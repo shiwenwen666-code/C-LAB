@@ -1,5 +1,5 @@
-import { SelectedWorksSection } from "../components/SelectedWorksSection";
+import { FeaturedWorksShowcase } from "../components/FeaturedWorksShowcase";
 
 export function Work() {
-  return <SelectedWorksSection />;
+  return <FeaturedWorksShowcase />;
 }

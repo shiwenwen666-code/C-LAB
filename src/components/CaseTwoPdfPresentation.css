@@ -1,0 +1,12 @@
+.case-two-pdf-presentation {
+  min-height: 100vh;
+  background: #1c1c1c;
+}
+
+.case-two-pdf-presentation__image {
+  display: block;
+  width: 100%;
+  max-width: 1935px;
+  height: auto;
+  margin-inline: auto;
+}

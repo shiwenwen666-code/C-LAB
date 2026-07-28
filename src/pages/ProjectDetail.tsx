@@ -1,8 +1,10 @@
-import type { CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties, type MouseEvent, type SyntheticEvent } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAppSettings } from "../App";
 import { Reveal } from "../components/Motion";
 import { ProjectCard } from "../components/ProjectCard";
+import { CaseOneFigmaPresentation } from "../components/CaseOneFigmaPresentation";
+import { CaseTwoPdfPresentation } from "../components/CaseTwoPdfPresentation";
 import { projects } from "../data/projects";
 import { works } from "../data/works";
 
@@ -267,6 +269,90 @@ const newPowerCopy = {
   ],
 };
 
+const aigcCaseCopy = {
+  meta: [
+    ["ROLE", "AIGC Workflow Builder / Visual Designer"],
+    ["SCOPE", "Prompt System · Visual Board · Agent Workflow"],
+    ["PLATFORM", "Alibaba.com Merchant Growth"],
+    ["PERIOD", "2026"],
+  ],
+  metrics: [
+    ["56", "Industries", "行业场景拆解"],
+    ["240+", "SKUs", "商品资产覆盖"],
+    ["20K+", "Images", "生成与筛选量级"],
+    ["Agent", "Workflow", "自动化流程沉淀"],
+  ],
+  stages: [
+    ["01", "MRM 需求承接", "理解业务目标、品类差异与广告投放限制。"],
+    ["02", "能力清洗与映射", "把行业、商品、卖点、场景拆成可被 AI 调用的结构。"],
+    ["03", "Prompt 模块化", "沉淀提示词变量、视觉风格与画面控制规则。"],
+    ["04", "多 Agent 协同", "用工具链完成资料检索、图像生成、筛选和精修。"],
+    ["05", "资产输出", "形成可复用视觉板、广告样张与下一轮优化依据。"],
+  ],
+  thinking: [
+    ["Business Background", "如何将流量资源利用到位，并在有限素材下做出更强的商品说服力？"],
+    ["Visual Diagnosis", "B 端商品图不是越炫越好，而是要让客户快速理解卖点、场景和信任感。"],
+    ["Workflow Strategy", "把人工经验拆成流程节点，让 AI 不是随机出图，而是被明确指挥的生产伙伴。"],
+  ],
+  method: [
+    ["商品理解", "行业 / 品类 / SKU / 卖点 / 使用场景"],
+    ["图像策略", "参考图、构图、镜头语言、材质质感"],
+    ["生成控制", "Prompt 变量、参数组合、批量生成"],
+    ["质量筛选", "可用性、商业感、画面逻辑、品牌风险"],
+  ],
+  agentSteps: [
+    ["STEP 01", "资料获取", "收集行业案例、商品信息与竞品视觉线索。"],
+    ["STEP 02", "整理模板", "将卖点、场景、风格整理成可复用 Prompt 结构。"],
+    ["STEP 03", "批量生成", "用 ComfyUI / Agent 流程生成多方向视觉方案。"],
+    ["STEP 04", "筛选精修", "筛选可商用图像并进行后期修正与版式适配。"],
+  ],
+  comfyFrames: [
+    ["工作流截图", "节点关系、输入输出与控制链路。"],
+    ["商品效果图", "用于检查产品质感与基础画面可用性。"],
+    ["生成链路截图", "保留完整参数与可复用节点结构。"],
+    ["广告效果图", "面向投放场景的成品视觉方向。"],
+  ],
+  agentModules: [
+    ["Brand Image Agent", "把行业、商品、卖点、画面风格收拢成统一输入。"],
+    ["Prompt Logic", "自动整理正向词、反向词、构图要求和风格约束。"],
+    ["Review Loop", "将生成结果回流到视觉板，支持下一轮筛选与优化。"],
+  ],
+  marketingCards: [
+    ["营销势力图 01", "行业竞争格局"],
+    ["营销势力图 02", "商品卖点拆解"],
+    ["营销势力图 03", "场景投放判断"],
+    ["营销势力图 04", "商家增长路径"],
+    ["营销势力图 05", "视觉方向归纳"],
+    ["营销势力图 06", "内容资产沉淀"],
+  ],
+  workflowModules: [
+    ["涂抹清除 & 重绘工具", "工作流截图位", ["产品效果图 01", "产品效果图 02", "产品效果图 03"]],
+    ["文字指令消除 & 指定产品替换", "工作流截图位", ["替换效果 01", "替换效果 02", "替换效果 03"]],
+    ["图像洗稿工具", "工作流截图位", ["效果图 01", "效果图 02", "效果图 03"]],
+  ],
+  comparisonRows: [
+    ["生成成本", "0.016 元 / 张 ★", "0.2-0.4 美元 / 张", "5-12 积分 / 张"],
+    ["生成时长", "1 min / 张 ★", "2 min / 张", "2 min / 张"],
+    ["文字保持力度", "✓", "—", "—"],
+    ["产品细节完整性", "✓", "—", "—"],
+    ["合格率", "95% ★", "85%", "85%"],
+  ],
+  agentStats: [
+    ["1/25", "人工筛选比例", "从大量生成结果中筛出可投放基础图。"],
+    ["x2", "迭代速度", "缩短从 brief 到视觉方向确认的时间。"],
+    ["95%", "质量控制", "用规则化检查降低画面异常与商业风险。"],
+  ],
+  tools: [
+    ["AI Prompt Generator", "用于沉淀行业、商品、场景、风格变量的提示词生成工具。"],
+    ["Visual QA Board", "用于检查安全边距、构图参考线和素材可用性的视觉验图台。"],
+    ["ComfyUI Workflow", "用于批量生成、局部重绘和风格稳定的自动化图像流程。"],
+  ],
+  reflection: {
+    en: "This case is not about making one beautiful picture. It is about building a repeatable commercial image workflow that turns business input into controllable visual output.",
+    zh: "这个项目不是为了做出某一张漂亮图片，而是把业务输入转化成可控视觉输出，建立一套可复用的商业图像生产流程。",
+  },
+};
+
 function CaseMedia({
   label,
   caption,
@@ -306,7 +392,7 @@ function AwardMedia({
   );
 }
 
-function NewPowerAwardsDetail() {
+export function NewPowerAwardsDetail() {
   const { locale } = useAppSettings();
 
   return (
@@ -1269,20 +1355,456 @@ function PromptGeneratorDetail() {
   );
 }
 
+type AigcPreview = {
+  label: string;
+  note?: string;
+  className: string;
+};
+
+const aigcPreviewSelector = [
+  ".aigc-case-browser-card",
+  ".aigc-case-media",
+  ".aigc-case-comfy-card",
+  ".aigc-case-workflow-shot",
+  ".aigc-case-effect-card",
+  ".aigc-case-agent-module-main",
+  ".aigc-case-marketing-card",
+].join(", ");
+
+function AigcMerchantAdvertisingDetail() {
+  const { locale } = useAppSettings();
+  const [activePreview, setActivePreview] = useState<AigcPreview | null>(null);
+
+  useEffect(() => {
+    if (!activePreview) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActivePreview(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activePreview]);
+
+  const handlePreviewClick = (event: MouseEvent<HTMLElement>) => {
+    const target = event.target as HTMLElement;
+    if (target.closest(".aigc-case-lightbox")) return;
+
+    const previewCard = target.closest(aigcPreviewSelector) as HTMLElement | null;
+    if (!previewCard || !event.currentTarget.contains(previewCard)) return;
+
+    const label =
+      previewCard.querySelector("span")?.textContent?.trim() ||
+      previewCard.querySelector("strong")?.textContent?.trim() ||
+      previewCard.querySelector("h3")?.textContent?.trim() ||
+      "Preview";
+    const note = previewCard.querySelector("p")?.textContent?.trim();
+
+    setActivePreview({
+      label,
+      note,
+      className: previewCard.className,
+    });
+  };
+
+  const handleProtectedAction = (event: SyntheticEvent<HTMLElement>) => {
+    const target = event.target as HTMLElement;
+    if (activePreview || target.closest(aigcPreviewSelector)) {
+      event.preventDefault();
+    }
+  };
+
+  return (
+    <article
+      className={`aigc-case-detail ${locale === "zh" ? "is-zh" : "is-en"}`}
+      onClickCapture={handlePreviewClick}
+      onContextMenuCapture={handleProtectedAction}
+      onDragStartCapture={handleProtectedAction}
+    >
+      <div className="aigc-case-wrap">
+        <div className="aigc-case-back">
+          <Link className="text-link" to="/work">
+            {locale === "en" ? "Back to Work" : "返回作品"}
+          </Link>
+        </div>
+
+        <header className="aigc-case-hero">
+          <Reveal className="aigc-case-kicker">
+            <span>Case 03 / Alibaba.com AIGC Advertising</span>
+            <span>AIGC · Workflow · Agent</span>
+          </Reveal>
+          <div className="aigc-case-hero-grid">
+            <Reveal className="aigc-case-hero-copy">
+              <p>{locale === "en" ? "AIGC Advertising" : "AIGC CGS 广告"}</p>
+              <h1>
+                {locale === "en" ? (
+                  <>
+                    <span>Capability</span>
+                    <span>Support Hub</span>
+                  </>
+                ) : (
+                  "能力支持中台"
+                )}
+              </h1>
+              <small>{locale === "en" ? "AI-powered commercial visual production." : "面向商家增长的 AI 商业视觉生产系统。"}</small>
+            </Reveal>
+            <Reveal className="aigc-case-hero-panel">
+              <div className="aigc-case-browser-card">
+                <span>Hero Visual Board</span>
+                <strong>{locale === "en" ? "Campaign-ready visual directions" : "可投放广告视觉方向"}</strong>
+              </div>
+            </Reveal>
+          </div>
+          <div className="aigc-case-meta">
+            {aigcCaseCopy.meta.map(([label, value]) => (
+              <Reveal className="aigc-case-meta-item" key={label}>
+                <span>{label}</span>
+                <strong>{value}</strong>
+              </Reveal>
+            ))}
+          </div>
+        </header>
+
+        <section className="aigc-case-overview">
+          <Reveal className="aigc-case-section-head">
+            <p className="eyebrow">{locale === "en" ? "Overview" : "项目概览"}</p>
+            <h2>
+              {locale === "en" ? (
+                <>
+                  <span>From scattered image tasks</span>
+                  <span>to a reusable AIGC production system.</span>
+                </>
+              ) : (
+                "从零散出图任务，到可复用 AIGC 生产系统。"
+              )}
+            </h2>
+            <p>
+              {locale === "en"
+                ? "This case focuses on building a modular AIGC workflow for Alibaba.com merchant-facing commercial ads. The goal is to transform business needs, SKU information and campaign requirements into controllable visual output."
+                : "这个 Case 聚焦于 Alibaba.com 商家力广告场景下的 AIGC 视觉工作流搭建：把业务需求、SKU 信息和广告投放要求，转化成可控制、可复用、可批量迭代的商业视觉输出。"}
+            </p>
+          </Reveal>
+          <div className="aigc-case-metric-grid">
+            {aigcCaseCopy.metrics.map(([value, label, note]) => (
+              <Reveal className="aigc-case-metric" key={value}>
+                <strong>{value}</strong>
+                <span>{label}</span>
+                <p>{note}</p>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <section className="aigc-case-board-section">
+          <Reveal className="aigc-case-section-head">
+            <p className="eyebrow">{locale === "en" ? "Research & Visual Board" : "生成前定义"}</p>
+            <h2>
+              {locale === "en" ? "Before generating images, define what the image needs to prove." : (
+                <>
+                  <span>在出图之前，</span>
+                  <span>先定义画面要证明什么。</span>
+                </>
+              )}
+            </h2>
+          </Reveal>
+          <div className="aigc-case-board-grid">
+            <div className="aigc-case-board-media-pair">
+              <Reveal className="aigc-case-media is-mrm">
+                <span>MRM / Requirement Input</span>
+                <p>{locale === "en" ? "Business brief, SKU information and platform constraints." : "业务 brief、SKU 信息、投放限制与平台规则输入。"}</p>
+              </Reveal>
+              <Reveal className="aigc-case-media is-reference">
+                <span>Reference Matrix</span>
+                <p>{locale === "en" ? "Competitor visuals, platform examples and category references." : "竞品视觉、平台案例和行业参考图谱。"}</p>
+              </Reveal>
+            </div>
+            <Reveal className="aigc-case-copy-card">
+              <p className="eyebrow">{locale === "en" ? "Core Question" : "核心问题"}</p>
+              <h3>{locale === "en" ? "How can image production support merchant growth?" : "如何用视觉图像支撑商家增长？"}</h3>
+              <p>{locale === "en" ? "The project starts by translating commercial objectives into visual variables: product, audience, scene, proof point and trust signal." : "项目从业务目标拆解开始：把商品、受众、场景、卖点、信任信号转化为可被 AI 调用的视觉变量。"}</p>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="aigc-case-thinking">
+          <Reveal className="aigc-case-section-head">
+            <p className="eyebrow">{locale === "en" ? "Business Thinking" : "业务思考"}</p>
+            <h2>
+              {locale === "en" ? "AIGC is not a magic button. It needs a decision system." : "AIGC 不是一键魔法，而是一套决策系统。"}
+            </h2>
+          </Reveal>
+          <div className="aigc-case-thinking-grid">
+            {aigcCaseCopy.thinking.map(([title, text], index) => (
+              <Reveal className="aigc-case-thinking-card" key={title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <section className="aigc-case-method">
+          <Reveal className="aigc-case-section-head">
+            <p className="eyebrow">{locale === "en" ? "Method" : "方法拆解"}</p>
+            <h2>
+              {locale === "en" ? "Decompose the image into controllable modules." : "把图像拆成可控制的模块。"}
+            </h2>
+          </Reveal>
+          <div className="aigc-case-method-grid">
+            {aigcCaseCopy.method.map(([title, text], index) => (
+              <Reveal className="aigc-case-method-card" key={title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <section className="aigc-case-agent">
+          <Reveal className="aigc-case-section-head">
+            <p className="eyebrow">Agent Workflow</p>
+            <h2>
+              {locale === "en" ? (
+                <>
+                  <span>Let AI become a production partner,</span>
+                  <span>not a random image generator.</span>
+                </>
+              ) : (
+                "让 AI 成为生产伙伴，而不是随机出图机器。"
+              )}
+            </h2>
+          </Reveal>
+          <Reveal className="aigc-case-agent-map">
+            {aigcCaseCopy.agentSteps.map(([step, title, text]) => (
+              <div className="aigc-case-agent-step" key={step}>
+                <span>{step}</span>
+                <strong>{title}</strong>
+                <p>{text}</p>
+              </div>
+            ))}
+          </Reveal>
+        </section>
+
+        <section className="aigc-case-comfy">
+          <Reveal className="aigc-case-section-head">
+            <p className="eyebrow">{locale === "en" ? "ComfyUI Workflow" : "ComfyUI 工作流"}</p>
+            <h2>
+              {locale === "en" ? "More than outputs: a controllable image pipeline." : (
+                <>
+                  <span>不只展示结果，</span>
+                  <span>也展示可控的生成链路。</span>
+                </>
+              )}
+            </h2>
+          </Reveal>
+          <div className="aigc-case-comfy-grid">
+            {aigcCaseCopy.comfyFrames.map(([title, text], index) => (
+              <Reveal className={`aigc-case-comfy-card ${index === 0 || index === 2 ? "is-wide" : ""}`} key={title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{title}</strong>
+                <p>{text}</p>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <section className="aigc-case-workflow-modules">
+          <Reveal className="aigc-case-section-head">
+            <p className="eyebrow">{locale === "en" ? "Capability Accumulation" : "能力沉淀"}</p>
+            <h2>{locale === "en" ? "Self-built workflows add controllable modules to AI ad images." : "自研工作流，为 AI 广告图附加可控模块。"}</h2>
+          </Reveal>
+          <div className="aigc-case-workflow-stack">
+            {aigcCaseCopy.workflowModules.map((workflowModule) => {
+              const [title, workflowLabel, effects] = workflowModule as [string, string, string[]];
+
+              return (
+                <Reveal className="aigc-case-workflow-row" key={title}>
+                  <h3>{title}</h3>
+                  <div className="aigc-case-workflow-layout">
+                    <div className="aigc-case-workflow-shot">
+                      <span>{workflowLabel}</span>
+                    </div>
+                    <div className="aigc-case-effect-strip">
+                      {effects.map((effect) => (
+                        <div className="aigc-case-effect-card" key={effect}>
+                          <span>{effect}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="aigc-case-output">
+          <Reveal className="aigc-case-section-head">
+            <p className="eyebrow">{locale === "en" ? "Generated Output" : "生成与筛选结果"}</p>
+            <h2>
+              {locale === "en" ? "The final value is not the image count. It is the controlled workflow behind it." : "真正的价值不是出图数量，而是背后的控制流程。"}
+            </h2>
+          </Reveal>
+          <div className="aigc-case-output-grid">
+            <Reveal className="aigc-case-media is-large-board">
+              <span>Batch Generation Board</span>
+              <p>{locale === "en" ? "Generated image directions and screening matrix." : "批量生成结果与筛选矩阵位置。"}</p>
+            </Reveal>
+            <Reveal className="aigc-case-media is-vertical">
+              <span>Ad Visual 01</span>
+              <p>{locale === "en" ? "Merchant-facing ad layout." : "商家侧广告视觉样张。"}</p>
+            </Reveal>
+            <Reveal className="aigc-case-media is-vertical">
+              <span>Ad Visual 02</span>
+              <p>{locale === "en" ? "Controlled product scene output." : "可控商品场景输出。"}</p>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="aigc-case-agent-module">
+          <Reveal className="aigc-case-section-head">
+            <p className="eyebrow">{locale === "en" ? "Brand Image Agent" : "品牌图像 Agent"}</p>
+            <h2>
+              {locale === "en" ? "Package project judgment into an agent-ready workflow." : "把项目判断，封装成可调用的 Agent 工作流。"}
+            </h2>
+            <p>
+              {locale === "en"
+                ? "The agent layer sits before the lightweight tools: it organizes category context, product information and visual constraints before any prompt or board is generated."
+                : "Agent 模块位于提示词工具和视觉板之前：先整理品类背景、商品信息和视觉约束，再进入后续生成与验图流程。"}
+            </p>
+          </Reveal>
+          <div className="aigc-case-agent-module-grid">
+            <Reveal className="aigc-case-agent-module-main">
+              <span>Agent Console</span>
+              <strong>{locale === "en" ? "Business input becomes structured visual instructions." : "业务输入，转化成结构化视觉指令。"}</strong>
+              <p>{locale === "en" ? "A placeholder for the agent interface, input schema and generated planning output." : "预留 Agent 界面、输入表单和结构化输出结果的展示位置。"}</p>
+            </Reveal>
+            <div className="aigc-case-agent-module-list">
+              {aigcCaseCopy.agentModules.map(([title, text], index) => (
+                <Reveal className="aigc-case-agent-module-card" key={title}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{title}</strong>
+                  <p>{text}</p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+          <div className="aigc-case-marketing-grid">
+            {aigcCaseCopy.marketingCards.map(([title, text]) => (
+              <Reveal className="aigc-case-marketing-card" key={title}>
+                <span>{title}</span>
+                <p>{text}</p>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <section className="aigc-case-tools">
+          <Reveal className="aigc-case-section-head">
+            <p className="eyebrow">{locale === "en" ? "From Learner to Builder" : "从 Learner 到 Builder"}</p>
+            <h2>
+              {locale === "en" ? "Project experience becomes reusable tools." : "项目经验，沉淀成可复用工具。"}
+            </h2>
+          </Reveal>
+          <div className="aigc-case-tool-grid">
+            {aigcCaseCopy.tools.map(([title, text]) => (
+              <Reveal className="aigc-case-tool-card" key={title}>
+                <h3>{title}</h3>
+                <p>{text}</p>
+                <div className="aigc-case-tool-media" />
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <section className="aigc-case-result">
+          <Reveal className="aigc-case-result-panel">
+            <p className="eyebrow">{locale === "en" ? "Workflow Result" : "工作流结果"}</p>
+            <h2>{locale === "en" ? "A reusable capability support hub for commercial visual production." : "一个可复用的商业视觉能力支持中台。"}</h2>
+            <div className="aigc-case-agent-stats">
+              {aigcCaseCopy.agentStats.map(([value, label, text]) => (
+                <div key={value}>
+                  <strong>{value}</strong>
+                  <span>{label}</span>
+                  <p>{text}</p>
+                </div>
+              ))}
+            </div>
+            <div className="aigc-case-comparison-table">
+              <div className="aigc-case-table-row is-head">
+                <span>维度 · Dimension</span>
+                <span>UED 自研工作流</span>
+                <span>Nano Banana Pro</span>
+                <span>Seedream 4.5</span>
+              </div>
+              {aigcCaseCopy.comparisonRows.map(([dimension, ued, nano, seedream]) => (
+                <div className="aigc-case-table-row" key={dimension}>
+                  <span>{dimension}</span>
+                  <span>{ued}</span>
+                  <span>{nano}</span>
+                  <span>{seedream}</span>
+                </div>
+              ))}
+            </div>
+            <blockquote>{aigcCaseCopy.reflection[locale]}</blockquote>
+          </Reveal>
+        </section>
+      </div>
+      {activePreview ? (
+        <div
+          className="aigc-case-lightbox"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setActivePreview(null)}
+          onContextMenu={(event) => event.preventDefault()}
+        >
+          <button
+            type="button"
+            className="aigc-case-lightbox-close"
+            aria-label="Close preview"
+            onClick={() => setActivePreview(null)}
+          >
+            ×
+          </button>
+          <div
+            className={`aigc-case-lightbox-frame ${activePreview.className}`}
+            onClick={(event) => event.stopPropagation()}
+            onContextMenu={(event) => event.preventDefault()}
+            draggable={false}
+          >
+            <div className="aigc-case-lightbox-watermark">
+              <span>{activePreview.label}</span>
+              {activePreview.note ? <p>{activePreview.note}</p> : null}
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </article>
+  );
+}
+
 export function ProjectDetail() {
   const { slug } = useParams();
   const { locale } = useAppSettings();
+
+  if (slug === "aigc-merchant-advertising") {
+    return <AigcMerchantAdvertisingDetail />;
+  }
 
   if (slug === "prompt-generator-tool") {
     return <PromptGeneratorDetail />;
   }
 
   if (slug === "alibaba-social-visual-system") {
-    return <AlibabaSocialDetail />;
+    return <CaseOneFigmaPresentation />;
   }
 
   if (slug === "new-power-awards-2025") {
-    return <NewPowerAwardsDetail />;
+    return <CaseTwoPdfPresentation />;
   }
 
   if (slug === "yacht-poster-template-system") {

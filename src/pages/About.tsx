@@ -15,29 +15,37 @@ This year, I learned to place ideas into systems and turn aesthetic judgment int
 这一年，我学会把想法放进系统里，把审美转化成可执行的方法。变化还在继续，而我也正在成为更稳定、更清醒的创作者。`,
 };
 
+const focusItems = [
+  { en: "Commercial Visual Design", zh: "商业视觉设计" },
+  { en: "AIGC Workflow Building", zh: "AIGC 工作流搭建" },
+  { en: "Prompt & Image Systems", zh: "提示词与图像系统" },
+  { en: "Vibe Coding", zh: "Vibe Coding" },
+  { en: "Harness Engineering", zh: "Harness Engineering" },
+  { en: "Content Systems", zh: "内容系统搭建" },
+];
+
 export function About() {
   const { locale } = useAppSettings();
 
   return (
-    <section className="page-wrap">
+    <section className="page-wrap about-page">
       <SectionHeader
         kicker={{ en: "About", zh: "关于" }}
-        title={{ en: "A designer building systems for visual production.", zh: "为视觉生产搭建系统的设计师。" }}
+        title={{ en: "A designer building systems for visual production", zh: "为视觉生产搭建系统的设计师" }}
       />
-      <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-        <Reveal className="surface rounded-lg p-6">
-          <p className="whitespace-pre-line text-2xl leading-10 text-neutral-800 dark:text-neutral-200">
-            {aboutGrowthCopy[locale]}
-          </p>
+
+      <div className="about-detail-grid">
+        <Reveal className="surface about-story-panel">
+          <p>{aboutGrowthCopy[locale]}</p>
         </Reveal>
-        <Reveal className="surface rounded-lg p-6">
+        <Reveal className="surface about-focus-panel">
           <p className="eyebrow">{locale === "en" ? "Focus" : "关注方向"}</p>
-          <ul className="mt-8 space-y-4 text-lg text-neutral-700 dark:text-neutral-300">
-            {(locale === "en"
-              ? ["Commercial Visual Design", "AIGC Workflow Building", "Prompt & Image Systems", "Vibe Coding", "Harness Engineering"]
-              : ["商业视觉设计", "AIGC 工作流搭建", "提示词与图像系统", "Vibe Coding", "Harness Engineering"]
-            ).map((item) => (
-              <li key={item}>{item}</li>
+          <ul>
+            {focusItems.map((item, index) => (
+              <li key={item.en}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{item[locale]}</strong>
+              </li>
             ))}
           </ul>
         </Reveal>

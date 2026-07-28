@@ -1,4 +1,12 @@
-import type { Award } from "../types";
+import type { Award, LocalizedText } from "../types";
+
+export type AwardCard = {
+  id: string;
+  title: LocalizedText;
+  year: string;
+  image: string;
+  category: LocalizedText;
+};
 
 export const awards: Award[] = [
   {
@@ -20,3 +28,21 @@ export const awards: Award[] = [
     category: { en: "Research", zh: "研究" },
   },
 ];
+
+export const awardCards: AwardCard[] = Array.from({ length: 20 }, (_, index) => {
+  const order = String(index + 1).padStart(2, "0");
+
+  return {
+    id: `award-${order}`,
+    title: {
+      en: `Award / Certificate ${order}`,
+      zh: `获奖证书 ${order}`,
+    },
+    year: String(2026 - (index % 4)),
+    image: `/images/awards/award-${order}.jpg`,
+    category: {
+      en: index % 3 === 0 ? "Award" : index % 3 === 1 ? "Certificate" : "Recognition",
+      zh: index % 3 === 0 ? "奖项" : index % 3 === 1 ? "证书" : "认可",
+    },
+  };
+});

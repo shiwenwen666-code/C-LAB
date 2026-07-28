@@ -153,8 +153,8 @@ const orbitCards: OrbitCard[] = [
 ];
 
 const cardWaveRanges: [number, number][] = orbitCards.map((_, index) => {
-  const start = 0.2 + index * 0.028;
-  return [start, start + 0.095];
+  const start = 0.32 + index * 0.032;
+  return [start, start + 0.064];
 });
 
 function orbitPoint(progress: MotionValue<number>, cx: number, cy: number, r: number, phase: number, turns = 4.2) {
@@ -184,17 +184,17 @@ function OrbitDot({
 
 function FlyingWorkCard({ card, index, progress }: { card: OrbitCard; index: number; progress: MotionValue<number> }) {
   const [start, end] = cardWaveRanges[index] ?? card.range;
-  const peak = start + (end - start) * 0.42;
+  const peak = start + (end - start) * 0.5;
   const outX = card.to.x * 1.36;
   const outY = card.to.y * 1.36;
   const previewX = card.to.x * 0.36;
   const previewY = card.to.y * 0.36;
   const previewScale = Math.max(card.to.scale * 1.45, 1.42);
-  const x = useSpring(useTransform(progress, [start, peak, end], [card.from.x, previewX, outX]), { stiffness: 42, damping: 25, mass: 1.18 });
-  const y = useSpring(useTransform(progress, [start, peak, end], [card.from.y, previewY, outY]), { stiffness: 42, damping: 25, mass: 1.18 });
-  const rotate = useSpring(useTransform(progress, [start, peak, end], [card.from.rotate, card.to.rotate * 0.28, card.to.rotate]), { stiffness: 42, damping: 25, mass: 1.18 });
-  const scale = useSpring(useTransform(progress, [start, peak, end], [card.from.scale, previewScale, card.to.scale]), { stiffness: 48, damping: 23, mass: 1.08 });
-  const opacity = useTransform(progress, [start, start + 0.035, peak, end - 0.035, end], [0, 1, 1, 1, 0]);
+  const x = useSpring(useTransform(progress, [start, peak, end], [card.from.x, previewX, outX]), { stiffness: 22, damping: 28, mass: 1.75 });
+  const y = useSpring(useTransform(progress, [start, peak, end], [card.from.y, previewY, outY]), { stiffness: 22, damping: 28, mass: 1.75 });
+  const rotate = useSpring(useTransform(progress, [start, peak, end], [card.from.rotate, card.to.rotate * 0.28, card.to.rotate]), { stiffness: 22, damping: 28, mass: 1.65 });
+  const scale = useSpring(useTransform(progress, [start, peak, end], [card.from.scale, previewScale, card.to.scale]), { stiffness: 24, damping: 27, mass: 1.58 });
+  const opacity = useSpring(useTransform(progress, [start, start + 0.012, peak, end - 0.014, end], [0, 1, 1, 0.78, 0]), { stiffness: 42, damping: 24, mass: 0.9 });
 
   return (
     <motion.figure
@@ -210,6 +210,7 @@ function FlyingWorkCard({ card, index, progress }: { card: OrbitCard; index: num
 export function OrbitWorksShowcase() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
+  const cardProgress = useSpring(scrollYProgress, { stiffness: 30, damping: 24, mass: 1.35 });
   const sloganY = useSpring(useTransform(scrollYProgress, [0, 0.28, 0.85], [120, 0, -34]), { stiffness: 48, damping: 22, mass: 1.05 });
   const sloganScale = useSpring(useTransform(scrollYProgress, [0, 0.28, 0.72], [0.76, 1, 0.94]), { stiffness: 54, damping: 21, mass: 1 });
   const sloganOpacity = useTransform(scrollYProgress, [0, 0.16], [0, 1]);
@@ -240,7 +241,7 @@ export function OrbitWorksShowcase() {
 
         <div className="orbit-card-layer" aria-hidden="true">
           {orbitCards.map((card, index) => (
-            <FlyingWorkCard card={card} index={index} progress={scrollYProgress} key={`${card.src}-${index}`} />
+            <FlyingWorkCard card={card} index={index} progress={cardProgress} key={`${card.src}-${index}`} />
           ))}
         </div>
 

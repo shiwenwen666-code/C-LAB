@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAppSettings } from "../App";
 
 const links = [
@@ -14,19 +14,50 @@ const links = [
 export function Navigation() {
   const { locale, setLocale, theme, setTheme } = useAppSettings();
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  function scrollToAwards() {
+    setOpen(false);
+
+    const scroll = () => document.getElementById("awards")?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    if (location.pathname !== "/") {
+      navigate("/");
+      window.setTimeout(scroll, 120);
+      return;
+    }
+
+    scroll();
+  }
 
   const navItems = (
     <>
-      {links.map(([label, to]) => (
-        <NavLink
-          key={to}
-          to={to}
-          onClick={() => setOpen(false)}
-          className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
-        >
-          {label}
-        </NavLink>
-      ))}
+      {links.map(([label, to]) =>
+        label === "ABOUT" ? (
+          <div className="nav-link-group" key="awards-group">
+            <button type="button" className="nav-link nav-link-button" onClick={scrollToAwards}>
+              AWARDS
+            </button>
+            <NavLink
+              to={to}
+              onClick={() => setOpen(false)}
+              className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+            >
+              {label}
+            </NavLink>
+          </div>
+        ) : (
+          <NavLink
+            key={to}
+            to={to}
+            onClick={() => setOpen(false)}
+            className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+          >
+            {label}
+          </NavLink>
+        ),
+      )}
     </>
   );
 
