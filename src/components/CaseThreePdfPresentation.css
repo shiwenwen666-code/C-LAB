@@ -1,0 +1,104 @@
+.case-three-pdf-presentation {
+  min-height: 100vh;
+  background: #1c1c1c;
+}
+
+.case-three-pdf-presentation__stage {
+  position: relative;
+  width: 100%;
+  max-width: 1935px;
+  margin-inline: auto;
+  overflow: hidden;
+}
+
+.case-three-pdf-presentation__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.case-three-pdf-presentation__gif {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+.case-three-pdf-presentation__gif.is-hero {
+  top: 1.987064%;
+  left: 50.833333%;
+  width: 36.208333%;
+  height: 5.721144%;
+  border-radius: clamp(8px, 1.25vw, 26px);
+}
+
+.case-three-pdf-presentation__gif.is-product-scene {
+  top: 8.921784%;
+  left: 31.625%;
+  width: 25.875%;
+  height: 4.140828%;
+  border-radius: clamp(8px, 1.2vw, 24px);
+}
+
+.case-three-pdf-presentation__tool-link {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: #111;
+  text-decoration: none;
+  cursor: pointer;
+  transform-origin: center;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+}
+
+.case-three-pdf-presentation__tool-link span {
+  opacity: 0;
+  font-size: clamp(7px, 0.65vw, 13px);
+  font-weight: 760;
+  line-height: 1;
+  white-space: nowrap;
+  transition: opacity 120ms ease;
+}
+
+.case-three-pdf-presentation__tool-link:hover,
+.case-three-pdf-presentation__tool-link:focus-visible {
+  background: linear-gradient(90deg, #c8ff00 0%, #75ee77 55%, #3edfe7 100%);
+  box-shadow: 0 0 18px rgba(173, 255, 33, 0.58);
+  filter: brightness(1.12) saturate(1.08);
+  outline: none;
+  transform: scale(1.1);
+}
+
+.case-three-pdf-presentation__tool-link:hover span,
+.case-three-pdf-presentation__tool-link:focus-visible span {
+  opacity: 1;
+}
+
+.case-three-pdf-presentation__tool-link.is-cyan-lab {
+  top: 91.785024%;
+  left: 75.041667%;
+  width: 4.375%;
+  height: 0.246716%;
+}
+
+.case-three-pdf-presentation__tool-link.is-visual-qa {
+  top: 97.93292%;
+  left: 74.75%;
+  width: 4.375%;
+  height: 0.240048%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-three-pdf-presentation__tool-link,
+  .case-three-pdf-presentation__tool-link span {
+    transition: none;
+  }
+}

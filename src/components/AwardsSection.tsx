@@ -256,7 +256,7 @@ export function AwardsSection() {
           {[0, 1].map((setIndex) =>
             awardCards.map((award) => (
               <button
-                className="award-card"
+                className={`award-card is-${award.orientation}`}
                 type="button"
                 key={`${setIndex}-${award.id}`}
                 data-award-id={award.id}
@@ -292,7 +292,7 @@ export function AwardsSection() {
             onClick={() => setSelectedAward(null)}
           >
             <motion.div
-              className="award-modal-panel"
+              className={`award-modal-panel is-${selectedAward.orientation}`}
               initial={{ opacity: 0, y: 18, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 12, scale: 0.98 }}

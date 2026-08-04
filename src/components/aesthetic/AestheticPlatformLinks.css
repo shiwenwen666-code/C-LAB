@@ -1,0 +1,221 @@
+.aesthetic-social-section {
+  position: relative;
+  z-index: 10;
+  padding: clamp(72px, 7vw, 112px) 24px;
+  overflow: hidden;
+  color: var(--aesthetic-text);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(212, 168, 83, 0.1), transparent 36%),
+    #070807;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.aesthetic-social-inner {
+  width: min(1200px, 100%);
+  margin-inline: auto;
+}
+
+.aesthetic-social-heading {
+  max-width: 760px;
+  margin-bottom: clamp(44px, 6vw, 72px);
+}
+
+.aesthetic-social-heading p {
+  margin: 0 0 16px;
+  color: var(--aesthetic-gold);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.aesthetic-social-heading h2 {
+  margin: 0;
+  font-family: "Inter Tight", "Noto Sans SC", Inter, sans-serif;
+  font-size: clamp(2.5rem, 5vw, 5.3rem);
+  font-weight: 650;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+.aesthetic-social-heading span {
+  display: block;
+  max-width: 640px;
+  margin-top: 22px;
+  color: var(--aesthetic-silver);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.aesthetic-social-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.aesthetic-social-card {
+  position: relative;
+  display: flex;
+  min-height: 232px;
+  padding: 20px;
+  flex-direction: column;
+  color: var(--aesthetic-text);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.022)),
+    #0a0b0a;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 16px;
+  text-decoration: none;
+  transition:
+    transform 260ms ease,
+    border-color 260ms ease,
+    box-shadow 260ms ease,
+    background-color 260ms ease;
+}
+
+.aesthetic-social-card.is-live:hover {
+  transform: translateY(-7px);
+  border-color: rgba(212, 168, 83, 0.5);
+  box-shadow: 0 20px 54px rgba(0, 0, 0, 0.34), 0 0 34px rgba(212, 168, 83, 0.1);
+}
+
+.aesthetic-social-card-top {
+  display: flex;
+  min-height: 58px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.aesthetic-platform-logo {
+  position: relative;
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 15px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 14px 30px rgba(0, 0, 0, 0.22);
+}
+
+.aesthetic-platform-logo > img:not(.aesthetic-platform-logo__channels-source) {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.aesthetic-platform-logo.is-rednote,
+.aesthetic-platform-logo.is-youtube {
+  background: #ff2442;
+}
+
+.aesthetic-platform-logo.is-wechat {
+  background: #08c160;
+}
+
+.aesthetic-platform-logo.is-youtube {
+  background: #ff0000;
+}
+
+.aesthetic-platform-logo.is-channels {
+  background: #f7f7f5;
+}
+
+.aesthetic-platform-logo__channels-source {
+  position: absolute;
+  width: 360px;
+  max-width: none;
+  height: auto;
+  transform: translate(-256px, -316px);
+}
+
+.aesthetic-platform-qr {
+  display: block;
+  width: 70px;
+  height: 70px;
+  padding: 4px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 10px;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.aesthetic-platform-qr:hover {
+  transform: scale(1.06);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
+}
+
+.aesthetic-platform-qr img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.aesthetic-social-card-copy {
+  margin-top: 20px;
+}
+
+.aesthetic-social-card-copy p {
+  margin: 0 0 8px;
+  color: var(--aesthetic-gold);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.aesthetic-social-card-copy h3 {
+  margin: 0;
+  font-family: "Inter Tight", "Noto Sans SC", Inter, sans-serif;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.aesthetic-social-card-copy span {
+  display: block;
+  margin-top: 11px;
+  color: var(--aesthetic-silver);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.aesthetic-social-card > strong {
+  margin-top: auto;
+  padding-top: 16px;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.aesthetic-social-card.is-live > strong {
+  color: var(--aesthetic-gold);
+}
+
+@media (max-width: 960px) {
+  .aesthetic-social-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .aesthetic-social-section {
+    padding-inline: 18px;
+  }
+
+  .aesthetic-social-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aesthetic-social-card {
+    min-height: 220px;
+  }
+}

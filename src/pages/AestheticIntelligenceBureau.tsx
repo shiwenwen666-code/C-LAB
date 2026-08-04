@@ -1,38 +1,40 @@
 import { Link } from "react-router-dom";
 import { useAppSettings } from "../App";
+import { CaseFourPdfPresentation } from "../components/CaseFourPdfPresentation";
+import { AestheticFeaturedCases } from "../components/aesthetic/AestheticFeaturedCases";
 import { AestheticFounder } from "../components/aesthetic/AestheticFounder";
 import { AestheticHero } from "../components/aesthetic/AestheticHero";
-import { AestheticOrigin } from "../components/aesthetic/AestheticOrigin";
-import { AestheticOutputGallery } from "../components/aesthetic/AestheticOutputGallery";
-import { AestheticProductionSkill } from "../components/aesthetic/AestheticProductionSkill";
-import { AestheticWorkflow } from "../components/aesthetic/AestheticWorkflow";
-import { ContentLines } from "../components/aesthetic/ContentLines";
-import { PlatformLinks } from "../components/aesthetic/PlatformLinks";
+import { AestheticPlatformLinks } from "../components/aesthetic/AestheticPlatformLinks";
 
 const copy = {
   en: {
     back: "Back to Work",
     hero: {
-      badge: "Case 04 / Content System",
+      badge: "CASE 04 / CONTENT SYSTEM",
       title: "Aesthetic Intelligence Bureau",
       subtitle: "Seeing the beauty of the world through a designer's eyes.",
-      englishName: "Aesthetic Intelligence Bureau",
+      englishName: "",
       description:
-        "A designer-led content system exploring visual language, brand stories, and creative thinking. It is a growing aesthetic research lab, not just a content account.",
-      primaryAction: "View System",
-      secondaryAction: "Platforms",
+        "An aesthetic research and content experiment initiated by a designer.\nIt extracts visual patterns from design, branding, art, and culture,\nand transforms perception into shareable methods\nthrough content, tools, and AI workflows.",
     },
     founder: {
-      eyebrow: "About",
-      title: "Founder",
-      subtitle: "A designer-led aesthetic research channel",
-      name: "Wenwen / Cyan",
-      role: "Visual Designer · Content Creator · Aesthetic Researcher",
+      eyebrow: "ABOUT",
+      title: "CREATOR",
+      subtitle: "",
+      name: "Shiwenwen / Cyan",
+      role: "VISUAL DESIGNER · BRAND DESIGNER · AIGC EXPLORER",
       body: [
-        "Aesthetic Intelligence Bureau began as a personal archive for visual references, films, brands, and design observations.",
-        "It gradually became a repeatable content system: observe the signal, decode the logic, translate the insight, and publish it as visual knowledge.",
+        "Aesthetic Intelligence Bureau began as a private visual archive for recording signals found in film, branding, art, and everyday life.",
+        "As the archive continued to grow, it evolved into a personal aesthetic research system: observing trends, decoding design logic, and using AI tools to turn fragmented inspiration into structured visual content.",
+        "It not only records what is beautiful, but also explores why it is beautiful and how beauty can be created.",
       ],
-      tags: ["Visual Analysis", "Brand Stories", "Content System", "Editorial Design", "Aesthetic Decoding"],
+      tags: [
+        "VISUAL RESEARCH",
+        "BRAND STORYTELLING",
+        "CONTENT SYSTEM",
+        "EDITORIAL DESIGN",
+        "AI CREATIVE WORKFLOW",
+      ],
     },
     origin: {
       eyebrow: "02 Origin",
@@ -138,26 +140,31 @@ const copy = {
   zh: {
     back: "返回作品",
     hero: {
-      badge: "Case 04 / Content System",
+      badge: "CASE 04 / CONTENT SYSTEM",
       title: "审美情报局",
       subtitle: "用设计的眼睛，看懂世界的美。",
-      englishName: "Aesthetic Intelligence Bureau",
+      englishName: "",
       description:
-        "一个由设计师主导的审美内容生产系统，围绕视觉语言、品牌故事与创意思考持续生长。它不是普通内容账号，而是一个正在形成方法的审美内容实验室。",
-      primaryAction: "查看系统",
-      secondaryAction: "平台入口",
+        "一个由设计师发起的审美研究与内容实验项目。\n从设计、品牌、艺术与文化中提取视觉规律，\n并通过内容、工具与 AI 工作流，\n将感知转化为可传播的方法。",
     },
     founder: {
-      eyebrow: "About",
-      title: "主理人",
-      subtitle: "一个设计师主导的审美研究频道",
-      name: "文文 / Cyan",
-      role: "Visual Designer · Content Creator · Aesthetic Researcher",
+      eyebrow: "ABOUT",
+      title: "CREATOR",
+      subtitle: "",
+      name: "施文文 / Cyan",
+      role: "VISUAL DESIGNER · BRAND DESIGNER · AIGC EXPLORER",
       body: [
-        "审美情报局最初只是一个私人视觉档案，用来记录电影、品牌、图像和日常灵感中的视觉线索。",
-        "后来它逐渐形成一套可持续的内容生产方法：观察信号，拆解逻辑，转译观点，再发布成可阅读、可传播的视觉知识。",
+        "审美情报局最初只是一个私人视觉档案，用于记录电影、品牌、艺术与日常生活中的视觉线索。",
+        "随着持续积累，它逐渐演变为一个个人审美研究系统：通过观察趋势、拆解设计逻辑，并结合 AI 工具，将碎片化的灵感转化为结构化的视觉内容。",
+        "它不仅记录“什么是美”，也探索“为什么美，以及如何创造美”。",
       ],
-      tags: ["视觉分析", "品牌故事", "内容系统", "编辑设计", "审美解构"],
+      tags: [
+        "视觉研究",
+        "品牌叙事",
+        "内容系统",
+        "编辑设计",
+        "AI 创意工作流",
+      ],
     },
     origin: {
       eyebrow: "02 起源",
@@ -260,18 +267,15 @@ export function AestheticIntelligenceBureau() {
   const page = copy[locale];
 
   return (
-    <article className="aesthetic-page">
+    <article className={`aesthetic-page is-${locale}`}>
       <Link className="aesthetic-back" to="/work">
         {page.back}
       </Link>
       <AestheticHero {...page.hero} />
       <AestheticFounder {...page.founder} />
-      <AestheticOrigin {...page.origin} />
-      <AestheticWorkflow {...page.workflow} />
-      <ContentLines {...page.lines} lines={page.lines.items} />
-      <AestheticProductionSkill {...page.production} />
-      <AestheticOutputGallery {...page.outputs} outputs={page.outputs.items} />
-      <PlatformLinks id="platforms" {...page.platforms} platforms={page.platforms.items} />
+      <AestheticFeaturedCases locale={locale} />
+      <CaseFourPdfPresentation />
+      <AestheticPlatformLinks locale={locale} />
     </article>
   );
 }

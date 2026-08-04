@@ -24,10 +24,12 @@ export type FeaturedWorkProject = {
     zh: string[];
   };
   cover: string;
+  coverPosition?: string;
   mediaType: FeaturedMediaType;
   link: string;
   scale: FeaturedProjectScale;
   accent: string;
+  placeholder?: boolean;
 };
 
 export const featuredWorkProjects: FeaturedWorkProject[] = [
@@ -53,8 +55,9 @@ export const featuredWorkProjects: FeaturedWorkProject[] = [
       en: ["2025", "Social Visual", "Brand System"],
       zh: ["2025", "社媒视觉", "品牌系统"],
     },
-    cover: "/images/selected-works/alibaba-social-visual-system.jpg",
-    mediaType: "image",
+    cover: "/media/featured-cases/01-alibaba-social-visual-system/cover.mp4",
+    coverPosition: "center center",
+    mediaType: "video",
     link: "/work/alibaba-social-visual-system",
     scale: "main",
     accent: "#4F7DFF",
@@ -81,8 +84,9 @@ export const featuredWorkProjects: FeaturedWorkProject[] = [
       en: ["2025", "Brand Design", "Event Visual"],
       zh: ["2025", "品牌设计", "活动视觉"],
     },
-    cover: "/images/selected-works/new-power-awards-2025.jpg",
-    mediaType: "image",
+    cover: "/media/featured-cases/02-new-power-awards-2025/cover.gif",
+    coverPosition: "center center",
+    mediaType: "gif",
     link: "/work/new-power-awards-2025",
     scale: "main",
     accent: "#144CFF",
@@ -109,7 +113,8 @@ export const featuredWorkProjects: FeaturedWorkProject[] = [
       en: ["2026", "AI Workflow", "Campaign System"],
       zh: ["2026", "AI 工作流", "营销系统"],
     },
-    cover: "/images/selected-works/aigc-marketing-system.jpg",
+    cover: "/media/featured-cases/03-aigc-marketing-visual-system/cover.png",
+    coverPosition: "center center",
     mediaType: "image",
     link: "/work/aigc-merchant-advertising",
     scale: "main",
@@ -137,7 +142,8 @@ export const featuredWorkProjects: FeaturedWorkProject[] = [
       en: ["2026", "Content Brand", "Visual Research"],
       zh: ["2026", "内容品牌", "视觉研究"],
     },
-    cover: "/images/selected-works/aesthetic-intelligence-bureau.jpg",
+    cover: "/media/featured-cases/04-aesthetic-intelligence-bureau/cover.png",
+    coverPosition: "center center",
     mediaType: "image",
     link: "/work/aesthetic-intelligence-bureau",
     scale: "main",
@@ -154,18 +160,19 @@ export const featuredWorkProjects: FeaturedWorkProject[] = [
       zh: "拍摄统筹",
     },
     meta: {
-      en: "CASE 05 / PRODUCTION / 2025",
-      zh: "CASE 05 / 拍摄统筹 / 2025",
+      en: "CASE 05 / PRODUCTION / 2026",
+      zh: "CASE 05 / 拍摄统筹 / 2026",
     },
     description: {
       en: "Bilingual coordination, on-site production support, and visual delivery for merchant content.",
       zh: "面向商家内容生产的中英双语对接、片场协作与视觉交付。",
     },
     details: {
-      en: ["2025", "Production", "Bilingual Coordination"],
-      zh: ["2025", "拍摄统筹", "双语协作"],
+      en: ["2026", "Production", "Bilingual Coordination"],
+      zh: ["2026", "拍摄统筹", "双语协作"],
     },
-    cover: "/images/selected-works/merchant-alliance-filming.jpg",
+    cover: "/media/featured-cases/05-merchant-alliance-filming/cover.png",
+    coverPosition: "center center",
     mediaType: "image",
     link: "/work/merchant-alliance-filming-project",
     scale: "main",
@@ -193,7 +200,7 @@ export const featuredWorkProjects: FeaturedWorkProject[] = [
       en: ["2026", "Prompt Tool"],
       zh: ["2026", "提示词工具"],
     },
-    cover: "/images/selected-works/prompt-generator.jpg",
+    cover: "/images/works/prompt-generator/outputs/1.png",
     mediaType: "image",
     link: "/work/prompt-generator-tool",
     scale: "experiment",
@@ -221,7 +228,7 @@ export const featuredWorkProjects: FeaturedWorkProject[] = [
       en: ["2026", "Visual QA"],
       zh: ["2026", "视觉检查"],
     },
-    cover: "/images/selected-works/visual-qa-board.jpg",
+    cover: "/images/works/visual-qa-workbench/outputs/5.png",
     mediaType: "image",
     link: "/work/visual-qa-workbench",
     scale: "experiment",
@@ -249,7 +256,7 @@ export const featuredWorkProjects: FeaturedWorkProject[] = [
       en: ["2025", "Template Tool"],
       zh: ["2025", "模板工具"],
     },
-    cover: "/images/selected-works/yacht-poster-template-system.jpg",
+    cover: "/images/works/yacht-poster/5.png",
     mediaType: "image",
     link: "/work/yacht-poster-template-system",
     scale: "experiment",
@@ -282,5 +289,6 @@ export const featuredWorkProjects: FeaturedWorkProject[] = [
     link: "/work",
     scale: "experiment",
     accent: "#C8D0C2",
+    placeholder: true,
   },
 ];

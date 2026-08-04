@@ -16,11 +16,23 @@ export function Contact() {
             become infinite.
           </h1>
         </div>
-        <div className="space-y-5 text-lg text-neutral-700 dark:text-neutral-300">
-          <p>Email</p>
-          <a className="text-link text-2xl" href={`mailto:${site.email}`}>{site.email}</a>
-          <p>{locale === "en" ? "Social links placeholder" : "社交链接占位"}</p>
-          <p>{locale === "en" ? "Resume placeholder" : "简历链接占位"}</p>
+        <div className="space-y-7 text-neutral-700 dark:text-neutral-300">
+          <div className="space-y-2">
+            <p className="text-sm">Email</p>
+            <a className="text-link break-all text-xl md:text-2xl" href={`mailto:${site.email}`}>
+              {site.email}
+            </a>
+          </div>
+          <div className="space-y-2">
+            <p className="text-sm">{locale === "en" ? "Phone / WeChat" : "电话 / 微信"}</p>
+            <a className="text-link text-xl md:text-2xl" href={`tel:${site.phone}`}>
+              {site.phone}
+            </a>
+          </div>
+          <div className="space-y-2">
+            <p className="text-sm">Base</p>
+            <p className="text-xl text-neutral-950 dark:text-white md:text-2xl">{site.location[locale]}</p>
+          </div>
         </div>
       </Reveal>
     </section>

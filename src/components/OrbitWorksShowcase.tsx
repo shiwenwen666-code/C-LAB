@@ -2,6 +2,7 @@ import { motion, useScroll, useSpring, useTransform, type MotionValue } from "fr
 import { useRef } from "react";
 
 type OrbitCard = {
+  imageNumber: number;
   src: string;
   className: string;
   from: { x: number; y: number; rotate: number; scale: number };
@@ -11,6 +12,7 @@ type OrbitCard = {
 
 const orbitCards: OrbitCard[] = [
   {
+    imageNumber: 1,
     src: "/images/works/work-01.svg",
     className: "is-large",
     from: { x: -20, y: 10, rotate: -3, scale: 0.18 },
@@ -18,6 +20,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.04, 1],
   },
   {
+    imageNumber: 2,
     src: "/images/works/work-02.svg",
     className: "is-wide",
     from: { x: 18, y: 8, rotate: 2, scale: 0.16 },
@@ -25,6 +28,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.055, 1],
   },
   {
+    imageNumber: 3,
     src: "/images/works/work-03.svg",
     className: "is-medium",
     from: { x: 0, y: -12, rotate: 0, scale: 0.16 },
@@ -32,6 +36,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.07, 1],
   },
   {
+    imageNumber: 4,
     src: "/images/works/work-04.svg",
     className: "is-portrait",
     from: { x: -12, y: 8, rotate: 0, scale: 0.14 },
@@ -39,6 +44,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.085, 1],
   },
   {
+    imageNumber: 5,
     src: "/images/works/work-05.svg",
     className: "is-tall",
     from: { x: 30, y: -10, rotate: 2, scale: 0.2 },
@@ -46,6 +52,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.1, 1],
   },
   {
+    imageNumber: 6,
     src: "/images/works/work-06.svg",
     className: "is-poster",
     from: { x: 12, y: 24, rotate: 1, scale: 0.2 },
@@ -53,6 +60,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.115, 1],
   },
   {
+    imageNumber: 7,
     src: "/images/works/work-01.svg",
     className: "is-medium",
     from: { x: -8, y: 18, rotate: 0, scale: 0.13 },
@@ -60,6 +68,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.13, 1],
   },
   {
+    imageNumber: 8,
     src: "/images/works/work-02.svg",
     className: "is-portrait",
     from: { x: 16, y: -6, rotate: 1, scale: 0.12 },
@@ -67,6 +76,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.145, 1],
   },
   {
+    imageNumber: 9,
     src: "/images/works/work-03.svg",
     className: "is-large",
     from: { x: -16, y: -14, rotate: -1, scale: 0.15 },
@@ -74,6 +84,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.16, 1],
   },
   {
+    imageNumber: 10,
     src: "/images/works/work-04.svg",
     className: "is-wide",
     from: { x: 8, y: 10, rotate: 0, scale: 0.14 },
@@ -81,6 +92,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.175, 1],
   },
   {
+    imageNumber: 11,
     src: "/images/works/work-05.svg",
     className: "is-poster",
     from: { x: -22, y: 18, rotate: -1, scale: 0.12 },
@@ -88,6 +100,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.19, 1],
   },
   {
+    imageNumber: 12,
     src: "/images/works/work-06.svg",
     className: "is-portrait",
     from: { x: 18, y: 20, rotate: 1, scale: 0.13 },
@@ -95,6 +108,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.205, 1],
   },
   {
+    imageNumber: 13,
     src: "/images/works/work-01.svg",
     className: "is-portrait",
     from: { x: 0, y: 0, rotate: 0, scale: 0.1 },
@@ -102,6 +116,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.22, 1],
   },
   {
+    imageNumber: 14,
     src: "/images/works/work-02.svg",
     className: "is-medium",
     from: { x: 0, y: 0, rotate: 0, scale: 0.12 },
@@ -109,6 +124,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.235, 1],
   },
   {
+    imageNumber: 15,
     src: "/images/works/work-03.svg",
     className: "is-wide",
     from: { x: -10, y: -8, rotate: 0, scale: 0.13 },
@@ -116,6 +132,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.25, 1],
   },
   {
+    imageNumber: 16,
     src: "/images/works/work-04.svg",
     className: "is-portrait",
     from: { x: 12, y: 8, rotate: 0, scale: 0.11 },
@@ -123,6 +140,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.265, 1],
   },
   {
+    imageNumber: 17,
     src: "/images/works/work-05.svg",
     className: "is-portrait",
     from: { x: -4, y: 6, rotate: 0, scale: 0.1 },
@@ -130,6 +148,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.28, 1],
   },
   {
+    imageNumber: 18,
     src: "/images/works/work-06.svg",
     className: "is-large",
     from: { x: 8, y: -4, rotate: 0, scale: 0.12 },
@@ -137,6 +156,7 @@ const orbitCards: OrbitCard[] = [
     range: [0.295, 1],
   },
   {
+    imageNumber: 19,
     src: "/images/works/work-01.svg",
     className: "is-poster",
     from: { x: -12, y: 8, rotate: -1, scale: 0.12 },
@@ -144,18 +164,115 @@ const orbitCards: OrbitCard[] = [
     range: [0.31, 1],
   },
   {
+    imageNumber: 20,
     src: "/images/works/work-02.svg",
     className: "is-medium",
     from: { x: 10, y: 12, rotate: 1, scale: 0.12 },
     to: { x: 1510, y: 40, rotate: -5, scale: 1.05 },
     range: [0.325, 1],
   },
+  {
+    imageNumber: 21,
+    src: "/images/works/work-03.svg",
+    className: "is-portrait",
+    from: { x: -14, y: -4, rotate: -1, scale: 0.11 },
+    to: { x: -980, y: -720, rotate: -9, scale: 1.02 },
+    range: [0.34, 1],
+  },
+  {
+    imageNumber: 22,
+    src: "/images/works/work-04.svg",
+    className: "is-tall",
+    from: { x: 15, y: 5, rotate: 1, scale: 0.11 },
+    to: { x: 1120, y: -690, rotate: 10, scale: 1.04 },
+    range: [0.355, 1],
+  },
+  {
+    imageNumber: 23,
+    src: "/images/works/work-05.svg",
+    className: "is-portrait",
+    from: { x: -8, y: 16, rotate: 0, scale: 0.1 },
+    to: { x: -1210, y: 500, rotate: 8, scale: 0.98 },
+    range: [0.37, 1],
+  },
+  {
+    imageNumber: 24,
+    src: "/images/works/work-06.svg",
+    className: "is-portrait",
+    from: { x: 12, y: 18, rotate: 1, scale: 0.1 },
+    to: { x: 1260, y: 560, rotate: -8, scale: 1.02 },
+    range: [0.385, 1],
+  },
+  {
+    imageNumber: 25,
+    src: "/images/works/work-01.svg",
+    className: "is-tall",
+    from: { x: -2, y: -10, rotate: 0, scale: 0.11 },
+    to: { x: -420, y: -1010, rotate: 12, scale: 0.96 },
+    range: [0.4, 1],
+  },
+  {
+    imageNumber: 26,
+    src: "/images/works/work-02.svg",
+    className: "is-portrait",
+    from: { x: 4, y: -8, rotate: 0, scale: 0.11 },
+    to: { x: 430, y: -1050, rotate: -11, scale: 1 },
+    range: [0.415, 1],
+  },
+  {
+    imageNumber: 27,
+    src: "/images/works/work-03.svg",
+    className: "is-portrait",
+    from: { x: -18, y: 8, rotate: -1, scale: 0.1 },
+    to: { x: -1510, y: -360, rotate: -6, scale: 1.04 },
+    range: [0.43, 1],
+  },
+  {
+    imageNumber: 28,
+    src: "/images/works/work-04.svg",
+    className: "is-tall",
+    from: { x: 18, y: 7, rotate: 1, scale: 0.1 },
+    to: { x: 1500, y: -300, rotate: 7, scale: 1.03 },
+    range: [0.445, 1],
+  },
+  {
+    imageNumber: 29,
+    src: "/images/works/work-05.svg",
+    className: "is-portrait",
+    from: { x: -10, y: 20, rotate: -1, scale: 0.1 },
+    to: { x: -820, y: 850, rotate: 11, scale: 0.98 },
+    range: [0.46, 1],
+  },
+  {
+    imageNumber: 30,
+    src: "/images/works/work-06.svg",
+    className: "is-portrait",
+    from: { x: 11, y: 19, rotate: 1, scale: 0.1 },
+    to: { x: 850, y: 880, rotate: -10, scale: 1.02 },
+    range: [0.475, 1],
+  },
 ];
 
 const cardWaveRanges: [number, number][] = orbitCards.map((_, index) => {
-  const start = 0.32 + index * 0.032;
+  const start = 0.32 + index * 0.021;
   return [start, start + 0.064];
 });
+
+const orbitImageExtensions = ["png", "jpg", "jpeg", "webp", "gif", "avif"];
+
+function tryNextOrbitImage(event: React.SyntheticEvent<HTMLImageElement>, fallbackSrc: string) {
+  const image = event.currentTarget;
+  const nextExtensionIndex = Number(image.dataset.extensionIndex ?? "0") + 1;
+
+  if (nextExtensionIndex < orbitImageExtensions.length) {
+    image.dataset.extensionIndex = String(nextExtensionIndex);
+    image.src = `/images/works/orbit-showcase/${image.dataset.imageNumber}.${orbitImageExtensions[nextExtensionIndex]}`;
+    return;
+  }
+
+  image.onerror = null;
+  image.src = fallbackSrc;
+}
 
 function orbitPoint(progress: MotionValue<number>, cx: number, cy: number, r: number, phase: number, turns = 4.2) {
   const smoothProgress = useSpring(progress, { stiffness: 86, damping: 23, mass: 0.8 });
@@ -194,7 +311,7 @@ function FlyingWorkCard({ card, index, progress }: { card: OrbitCard; index: num
   const y = useSpring(useTransform(progress, [start, peak, end], [card.from.y, previewY, outY]), { stiffness: 22, damping: 28, mass: 1.75 });
   const rotate = useSpring(useTransform(progress, [start, peak, end], [card.from.rotate, card.to.rotate * 0.28, card.to.rotate]), { stiffness: 22, damping: 28, mass: 1.65 });
   const scale = useSpring(useTransform(progress, [start, peak, end], [card.from.scale, previewScale, card.to.scale]), { stiffness: 24, damping: 27, mass: 1.58 });
-  const opacity = useSpring(useTransform(progress, [start, start + 0.012, peak, end - 0.014, end], [0, 1, 1, 0.78, 0]), { stiffness: 42, damping: 24, mass: 0.9 });
+  const opacity = useSpring(useTransform(progress, [start, start + 0.006, peak, end - 0.009, end], [0, 1, 1, 0.92, 0]), { stiffness: 64, damping: 22, mass: 0.72 });
 
   return (
     <motion.figure
@@ -202,7 +319,14 @@ function FlyingWorkCard({ card, index, progress }: { card: OrbitCard; index: num
       style={{ x, y, rotate, scale, opacity }}
       transformTemplate={(_, generated) => `translate(-50%, -50%) ${generated}`}
     >
-      <img src={card.src} alt="" loading="lazy" />
+      <img
+        src={`/images/works/orbit-showcase/${card.imageNumber}.${orbitImageExtensions[0]}`}
+        alt=""
+        loading="lazy"
+        data-extension-index="0"
+        data-image-number={card.imageNumber}
+        onError={(event) => tryNextOrbitImage(event, card.src)}
+      />
     </motion.figure>
   );
 }
@@ -241,7 +365,7 @@ export function OrbitWorksShowcase() {
 
         <div className="orbit-card-layer" aria-hidden="true">
           {orbitCards.map((card, index) => (
-            <FlyingWorkCard card={card} index={index} progress={cardProgress} key={`${card.src}-${index}`} />
+            <FlyingWorkCard card={card} index={index} progress={cardProgress} key={card.imageNumber} />
           ))}
         </div>
 

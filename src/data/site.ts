@@ -2,8 +2,13 @@ import type { LocalizedText } from "../types";
 
 export const site = {
   name: "Cyan Design System",
-  email: "hello@cyan.design",
-  location: "GMT+8 / CN",
+  email: "shiwenwen666@gmail.com",
+  phone: "13516963309",
+  wechat: "13516963309",
+  location: {
+    en: "Hangzhou, China",
+    zh: "杭州",
+  } satisfies LocalizedText,
   role: {
     en: "Visual Designer",
     zh: "视觉设计师",

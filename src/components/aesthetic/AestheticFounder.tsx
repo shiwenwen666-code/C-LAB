@@ -14,7 +14,7 @@ export function AestheticFounder({ eyebrow, title, subtitle, name, role, body, t
       <div className="aesthetic-founder-heading">
         <p>{eyebrow}</p>
         <h2>{title}</h2>
-        <span>{subtitle}</span>
+        {subtitle ? <span>{subtitle}</span> : null}
       </div>
       <div className="aesthetic-founder-inner">
         <div className="aesthetic-founder-avatar" aria-label={name}>

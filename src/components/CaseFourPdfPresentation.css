@@ -1,0 +1,91 @@
+.case-four-pdf-presentation {
+  background: #1a1a1a;
+}
+
+.case-four-pdf-presentation__canvas {
+  position: relative;
+  width: 100%;
+  max-width: 1920px;
+  margin-inline: auto;
+}
+
+.case-four-pdf-presentation__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.case-four-pdf-presentation__skill-link {
+  position: absolute;
+  z-index: 2;
+  top: 52.99%;
+  left: 12.62%;
+  width: 15.2%;
+  height: 0.42%;
+  min-height: 28px;
+  border: 1px solid rgba(232, 170, 37, 0.62);
+  border-radius: 10px;
+  background: rgba(232, 170, 37, 0.06);
+  box-shadow: 0 0 0 rgba(232, 170, 37, 0);
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.case-four-pdf-presentation__skill-link span {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  color: #171717;
+  background: #e8aa25;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0.9;
+  transform: translateY(-50%);
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.case-four-pdf-presentation__skill-link:hover,
+.case-four-pdf-presentation__skill-link:focus-visible {
+  border-color: #e8aa25;
+  background: rgba(232, 170, 37, 0.16);
+  box-shadow: 0 0 24px rgba(232, 170, 37, 0.34);
+  outline: none;
+  transform: scale(1.045);
+}
+
+.case-four-pdf-presentation__skill-link:hover span,
+.case-four-pdf-presentation__skill-link:focus-visible span {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.12);
+}
+
+@media (max-width: 720px) {
+  .case-four-pdf-presentation__skill-link {
+    min-height: 18px;
+    border-radius: 6px;
+  }
+
+  .case-four-pdf-presentation__skill-link span {
+    right: 3px;
+    width: 14px;
+    height: 14px;
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-four-pdf-presentation__skill-link,
+  .case-four-pdf-presentation__skill-link span {
+    transition: none;
+  }
+}

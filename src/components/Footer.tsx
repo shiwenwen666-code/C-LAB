@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useAppSettings } from "../App";
 import { site } from "../data/site";
 
@@ -16,22 +15,26 @@ export function Footer() {
             become infinite.
           </h2>
         </div>
-        <div className="space-y-3 text-sm text-neutral-600 dark:text-neutral-400">
-          <p>Email</p>
-          <a className="text-link" href={`mailto:${site.email}`}>
-            {site.email}
-          </a>
-          <p>{locale === "en" ? "Social links placeholder" : "社交链接占位"}</p>
-          <p>{locale === "en" ? "Resume placeholder" : "简历链接占位"}</p>
+        <div className="space-y-5 text-sm text-neutral-600 dark:text-neutral-400">
+          <div>
+            <p>Email</p>
+            <a className="text-link break-all" href={`mailto:${site.email}`}>
+              {site.email}
+            </a>
+          </div>
+          <div>
+            <p>{locale === "en" ? "Phone / WeChat" : "电话 / 微信"}</p>
+            <a className="text-link" href={`tel:${site.phone}`}>
+              {site.phone}
+            </a>
+          </div>
+          <div>
+            <p>Base</p>
+            <p className="text-neutral-950 dark:text-white">{site.location[locale]}</p>
+          </div>
         </div>
-        <div className="flex flex-col gap-2 text-sm text-neutral-600 dark:text-neutral-400 md:items-end">
-          <Link className="text-link" to="/work">
-            {locale === "en" ? "Work" : "作品"}
-          </Link>
-          <Link className="text-link" to="/articles">
-            {locale === "en" ? "Articles" : "文章"}
-          </Link>
-          <p className="mt-4">© 2026 Cyan Design System</p>
+        <div className="flex flex-col justify-end text-sm text-neutral-600 dark:text-neutral-400 md:items-end">
+          <p>© 2026 Cyan Design System</p>
         </div>
       </div>
     </footer>

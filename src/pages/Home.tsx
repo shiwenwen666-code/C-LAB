@@ -342,7 +342,7 @@ function AboutIntroSection() {
 }
 
 export function Home() {
-  const { locale } = useAppSettings();
+  const { locale, theme } = useAppSettings();
   const [isHeroStarted, setIsHeroStarted] = useState(false);
   const [isHeroIntroVisible, setIsHeroIntroVisible] = useState(true);
   const handleRevealHero = useCallback(() => setIsHeroStarted(true), []);
@@ -360,6 +360,13 @@ export function Home() {
 
         {isHeroStarted ? (
           <>
+            {theme === "dark" ? (
+              <div className="stavros-galaxy-backdrop" aria-hidden="true">
+                <video autoPlay muted loop playsInline preload="metadata">
+                  <source src="/videos/home/hero-galaxy.webm" type="video/webm" />
+                </video>
+              </div>
+            ) : null}
             <VisualDustField />
 
             <div className="stavros-hero-shell">

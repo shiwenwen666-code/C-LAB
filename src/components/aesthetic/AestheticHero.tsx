@@ -6,8 +6,6 @@ type AestheticHeroProps = {
   subtitle: string;
   englishName: string;
   description: string;
-  primaryAction: string;
-  secondaryAction: string;
 };
 
 export function AestheticHero({
@@ -16,8 +14,6 @@ export function AestheticHero({
   subtitle,
   englishName,
   description,
-  primaryAction,
-  secondaryAction,
 }: AestheticHeroProps) {
   return (
     <section className="aesthetic-hero">
@@ -26,12 +22,8 @@ export function AestheticHero({
         <p className="aesthetic-badge">{badge}</p>
         <h1>{title}</h1>
         <p className="aesthetic-hero-subtitle">{subtitle}</p>
-        <p className="aesthetic-hero-name">{englishName}</p>
+        {englishName ? <p className="aesthetic-hero-name">{englishName}</p> : null}
         <p className="aesthetic-hero-desc">{description}</p>
-        <div className="aesthetic-hero-actions">
-          <a href="#visual-notes">{primaryAction}</a>
-          <a href="#platforms">{secondaryAction}</a>
-        </div>
       </div>
     </section>
   );

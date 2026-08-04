@@ -14,13 +14,25 @@ import { featuredWorkProjects, type FeaturedWorkProject } from "../data/featured
 
 function FeaturedMedia({ project }: { project: FeaturedWorkProject }) {
   if (project.mediaType === "video") {
-    return <video className="featured-showcase-asset" src={project.cover} autoPlay muted loop playsInline />;
+    return (
+      <video
+        className="featured-showcase-asset"
+        src={project.cover}
+        style={{ objectPosition: project.coverPosition }}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+      />
+    );
   }
 
   return (
     <img
       className="featured-showcase-asset"
       src={project.cover}
+      style={{ objectPosition: project.coverPosition }}
       alt=""
       loading="lazy"
       onError={(event) => {
@@ -90,7 +102,10 @@ function FeaturedWorkCard({
       className="featured-showcase-item"
       style={{ y, scale, opacity, pointerEvents, zIndex: index + 1 } as MotionStyle}
     >
-      <article className="featured-showcase-card" style={{ "--gallery-accent": project.accent } as CSSProperties}>
+      <article
+        className={`featured-showcase-card featured-showcase-card-${project.id}`}
+        style={{ "--gallery-accent": project.accent } as CSSProperties}
+      >
         <Link className="featured-showcase-link" to={project.link} aria-label={project.title[locale]}>
           <div className="featured-showcase-media" aria-hidden="true">
             <FeaturedMedia project={project} />
@@ -123,8 +138,8 @@ function FeaturedWorkCard({
 function ToolProjectCard({ project }: { project: FeaturedWorkProject }) {
   const { locale } = useAppSettings();
 
-  return (
-    <Link className="selected-tool-card" to={project.link} style={{ "--gallery-accent": project.accent } as CSSProperties}>
+  const content = (
+    <>
       <div className="selected-tool-media" aria-hidden="true">
         <img
           src={project.cover}
@@ -140,6 +155,24 @@ function ToolProjectCard({ project }: { project: FeaturedWorkProject }) {
         <h3>{project.title[locale]}</h3>
         <p>{project.description[locale]}</p>
       </div>
+    </>
+  );
+
+  if (project.placeholder) {
+    return (
+      <article
+        className="selected-tool-card is-placeholder"
+        style={{ "--gallery-accent": project.accent } as CSSProperties}
+        aria-disabled="true"
+      >
+        {content}
+      </article>
+    );
+  }
+
+  return (
+    <Link className="selected-tool-card" to={project.link} style={{ "--gallery-accent": project.accent } as CSSProperties}>
+      {content}
     </Link>
   );
 }

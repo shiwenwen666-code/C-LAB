@@ -3,10 +3,56 @@
   background: #1c1c1c;
 }
 
+.case-two-pdf-presentation__stage {
+  position: relative;
+  width: 100%;
+  max-width: 1935px;
+  margin-inline: auto;
+  overflow: hidden;
+}
+
 .case-two-pdf-presentation__image {
   display: block;
   width: 100%;
-  max-width: 1935px;
   height: auto;
-  margin-inline: auto;
+}
+
+.case-two-pdf-presentation__gif {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: auto;
+  height: auto;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.case-two-pdf-presentation__gif.is-hero {
+  top: 6.630279%;
+  left: 0;
+  width: 100%;
+  height: 4.860672%;
+}
+
+.case-two-pdf-presentation__gif.is-portrait {
+  top: 74.070669%;
+  left: 16.847545%;
+  width: 20.155039%;
+  height: 3.355358%;
+  overflow: hidden;
+  border-radius: clamp(6px, 1.15vw, 22px);
+}
+
+.case-two-pdf-presentation__gif.is-projection-top {
+  top: 79.189888%;
+  left: 5.219638%;
+  width: 89.509044%;
+  height: 2.045389%;
+}
+
+.case-two-pdf-presentation__gif.is-projection-bottom {
+  top: 81.407641%;
+  left: 5.219638%;
+  width: 89.560724%;
+  height: 2.045389%;
 }

@@ -5,6 +5,8 @@ import { Reveal } from "../components/Motion";
 import { ProjectCard } from "../components/ProjectCard";
 import { CaseOneFigmaPresentation } from "../components/CaseOneFigmaPresentation";
 import { CaseTwoPdfPresentation } from "../components/CaseTwoPdfPresentation";
+import { CaseThreePdfPresentation } from "../components/CaseThreePdfPresentation";
+import { CaseFiveShootingPresentation } from "../components/CaseFiveShootingPresentation";
 import { projects } from "../data/projects";
 import { works } from "../data/works";
 
@@ -16,8 +18,14 @@ const promptCopy = {
     zh: "Prompt Generator Tool 是一个自建提示词工具，用于辅助生成面向商业视觉生产的结构化双语提示词。",
   },
   why: {
-    en: "During AIGC commercial visual production, prompt writing often became repetitive, inconsistent, and difficult to reuse. I built this tool to turn scattered prompt experience into a reusable interface and workflow.",
-    zh: "在 AIGC 商业视觉生产中，提示词编写经常重复、分散且难以复用。我搭建这个工具，是为了把零散的提示词经验转化为一个可复用的界面和工作流。",
+    en: [
+      "In AIGC visual production, prompt writing is often repetitive, fragmented, and difficult to reuse.",
+      "I turned that scattered experience into a reusable prompt interface and workflow.",
+    ],
+    zh: [
+      "AIGC 商业视觉生产中，提示词编写常重复、分散，且难以复用。",
+      "我把零散经验整理成可复用的提示词界面与工作流。",
+    ],
   },
   features: {
     en: [
@@ -48,17 +56,17 @@ const promptCopy = {
 };
 
 const interfaceImages = [
-  "/images/works/prompt-generator/interface-01.jpg",
-  "/images/works/prompt-generator/interface-02.jpg",
+  "/images/works/prompt-generator/outputs/2.png",
+  "/images/works/prompt-generator/outputs/3.png",
 ];
 
 const outputImages = [
-  "/images/works/prompt-generator/output-01.jpg",
-  "/images/works/prompt-generator/output-02.jpg",
-  "/images/works/prompt-generator/output-03.jpg",
-  "/images/works/prompt-generator/output-04.jpg",
-  "/images/works/prompt-generator/output-05.jpg",
-  "/images/works/prompt-generator/output-06.jpg",
+  "/images/works/prompt-generator/outputs/4.png",
+  "/images/works/prompt-generator/outputs/5.png",
+  "/images/works/prompt-generator/outputs/6.png",
+  "/images/works/prompt-generator/outputs/7.png",
+  "/images/works/prompt-generator/outputs/8.png",
+  "/images/works/prompt-generator/outputs/9.png",
 ];
 
 const yachtPosterCopy = {
@@ -122,16 +130,18 @@ const yachtPosterCopy = {
   highlights: ["5 min / poster", "No Photoshop required", "Browser-based editing", "Reusable templates"],
 };
 
+const yachtHeroImage = "/images/works/yacht-poster/1.png";
+
 const yachtInterfaceImages = [
-  "/images/works/yacht-poster/interface-01.jpg",
-  "/images/works/yacht-poster/interface-02.jpg",
+  "/images/works/yacht-poster/2.png",
+  "/images/works/yacht-poster/3.png",
 ];
 
 const yachtPosterImages = [
-  "/images/works/yacht-poster/poster-01.jpg",
-  "/images/works/yacht-poster/poster-02.jpg",
-  "/images/works/yacht-poster/poster-03.jpg",
-  "/images/works/yacht-poster/poster-04.jpg",
+  "/images/works/yacht-poster/4.png",
+  "/images/works/yacht-poster/5.png",
+  "/images/works/yacht-poster/6.jpg",
+  "/images/works/yacht-poster/7.jpg",
 ];
 
 const socialCaseCopy = {
@@ -686,19 +696,27 @@ export function NewPowerAwardsDetail() {
 function ProjectImageBlock({
   src,
   label,
+  viewLabel,
+  onOpen,
   className = "",
 }: {
   src: string;
   label: string;
+  viewLabel: string;
+  onOpen: () => void;
   className?: string;
 }) {
   return (
-    <div
-      className={`prompt-project-image ${className}`}
+    <button
+      type="button"
+      className={`prompt-project-image is-zoomable ${className}`}
       style={{ "--project-image": `url("${src}")` } as CSSProperties}
+      onClick={onOpen}
+      aria-label={`${viewLabel}: ${label}`}
     >
       <span>{label}</span>
-    </div>
+      <em>{viewLabel} ↗</em>
+    </button>
   );
 }
 
@@ -713,19 +731,27 @@ function ProjectButton({ href, children }: { href: string; children: string }) {
 function YachtImageFrame({
   src,
   label,
+  viewLabel,
+  onOpen,
   className = "",
 }: {
   src: string;
   label: string;
+  viewLabel: string;
+  onOpen: () => void;
   className?: string;
 }) {
   return (
-    <div
+    <button
+      type="button"
       className={`yacht-image-frame ${className}`}
       style={{ "--yacht-image": `url("${src}")` } as CSSProperties}
+      onClick={onOpen}
+      aria-label={`${viewLabel}: ${label}`}
     >
       <span>{label}</span>
-    </div>
+      <em>{viewLabel} ↗</em>
+    </button>
   );
 }
 
@@ -733,6 +759,20 @@ function YachtPosterDetail() {
   const { locale } = useAppSettings();
   const copy = yachtPosterCopy;
   const labels = copy.labels;
+  const [activeImage, setActiveImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!activeImage) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveImage(null);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeImage]);
+
+  const viewLabel = locale === "en" ? "View larger" : "放大查看";
 
   return (
     <article className={`yacht-project-detail ${locale === "zh" ? "is-zh" : "is-en"}`}>
@@ -753,7 +793,7 @@ function YachtPosterDetail() {
             </div>
           </Reveal>
           <Reveal className="yacht-project-hero-media">
-            <YachtImageFrame src={yachtInterfaceImages[0]} label={labels.interface[locale]} className="is-interface is-hero" />
+            <YachtImageFrame src={yachtHeroImage} label={labels.interface[locale]} viewLabel={viewLabel} onOpen={() => setActiveImage(yachtHeroImage)} className="is-interface is-hero" />
           </Reveal>
         </header>
 
@@ -793,7 +833,7 @@ function YachtPosterDetail() {
           <div className="yacht-project-interface-grid">
             {yachtInterfaceImages.map((src, index) => (
               <Reveal key={src}>
-                <YachtImageFrame src={src} label={`Interface 0${index + 1}`} className="is-interface" />
+                <YachtImageFrame src={src} label={`Interface 0${index + 1}`} viewLabel={viewLabel} onOpen={() => setActiveImage(src)} className="is-interface" />
               </Reveal>
             ))}
           </div>
@@ -807,7 +847,7 @@ function YachtPosterDetail() {
           <div className="yacht-project-poster-grid">
             {yachtPosterImages.map((src, index) => (
               <Reveal key={src}>
-                <YachtImageFrame src={src} label={`Poster 0${index + 1}`} className="is-poster" />
+                <YachtImageFrame src={src} label={`Poster 0${index + 1}`} viewLabel={viewLabel} onOpen={() => setActiveImage(src)} className="is-poster" />
               </Reveal>
             ))}
           </div>
@@ -851,6 +891,29 @@ function YachtPosterDetail() {
           </Reveal>
         </section>
       </div>
+      {activeImage ? (
+        <div
+          className="prompt-image-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={locale === "en" ? "Image preview" : "图片放大预览"}
+          onClick={() => setActiveImage(null)}
+        >
+          <button
+            type="button"
+            className="prompt-image-lightbox-close"
+            onClick={() => setActiveImage(null)}
+            aria-label={locale === "en" ? "Close preview" : "关闭预览"}
+          >
+            ×
+          </button>
+          <img
+            src={activeImage}
+            alt={locale === "en" ? "Project image preview" : "项目图片放大预览"}
+            onClick={(event) => event.stopPropagation()}
+          />
+        </div>
+      ) : null}
     </article>
   );
 }
@@ -1203,6 +1266,18 @@ function AlibabaSocialDetail() {
 function PromptGeneratorDetail() {
   const { locale } = useAppSettings();
   const project = promptProject;
+  const [activeImage, setActiveImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!activeImage) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveImage(null);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeImage]);
 
   if (!project) return null;
 
@@ -1234,8 +1309,10 @@ function PromptGeneratorDetail() {
 
           <Reveal className="prompt-project-cover">
             <ProjectImageBlock
-              src={project.coverImage}
+              src="/images/works/prompt-generator/outputs/1.png"
               label={locale === "en" ? "Cover / Prompt System" : "封面 / 提示词系统"}
+              viewLabel={locale === "en" ? "View larger" : "放大查看"}
+              onOpen={() => setActiveImage("/images/works/prompt-generator/outputs/1.png")}
             />
           </Reveal>
         </header>
@@ -1247,7 +1324,11 @@ function PromptGeneratorDetail() {
           </Reveal>
           <Reveal className="prompt-project-copy-card">
             <p className="eyebrow">{locale === "en" ? "Why I Built It" : "为什么搭建它"}</p>
-            <p>{promptCopy.why[locale]}</p>
+            <p className="prompt-project-copy-lines">
+              {promptCopy.why[locale].map((line) => (
+                <span key={line}>{line}</span>
+              ))}
+            </p>
           </Reveal>
         </section>
 
@@ -1274,7 +1355,12 @@ function PromptGeneratorDetail() {
           <div className="prompt-interface-grid">
             {interfaceImages.map((image, index) => (
               <Reveal key={image}>
-                <ProjectImageBlock src={image} label={locale === "en" ? `Interface 0${index + 1}` : `界面 0${index + 1}`} />
+                <ProjectImageBlock
+                  src={image}
+                  label={locale === "en" ? `Interface 0${index + 1}` : `界面 0${index + 1}`}
+                  viewLabel={locale === "en" ? "View larger" : "放大查看"}
+                  onOpen={() => setActiveImage(image)}
+                />
               </Reveal>
             ))}
           </div>
@@ -1283,7 +1369,7 @@ function PromptGeneratorDetail() {
         <section className="prompt-project-section">
           <Reveal className="prompt-project-section-head align-right">
             <p className="eyebrow">{locale === "en" ? "Output Gallery" : "输出展示"}</p>
-            <h2>{locale === "en" ? "Visual directions reserved for real generated outputs." : "为真实生成结果预留的视觉展示区。"}</h2>
+            <h2>{locale === "en" ? "From structured prompts to verifiable visual outputs." : "从结构化提示词，到可验证的视觉输出。"}</h2>
           </Reveal>
           <div className="prompt-output-gallery">
             {outputImages.map((image, index) => (
@@ -1291,38 +1377,13 @@ function PromptGeneratorDetail() {
                 <ProjectImageBlock
                   src={image}
                   label={locale === "en" ? `Output 0${index + 1}` : `输出 0${index + 1}`}
+                  viewLabel={locale === "en" ? "View larger" : "放大查看"}
+                  onOpen={() => setActiveImage(image)}
                   className={`is-output-${index + 1}`}
                 />
               </Reveal>
             ))}
           </div>
-        </section>
-
-        <section className={`prompt-project-role ${locale === "zh" ? "is-zh" : "is-en"}`}>
-          <Reveal>
-            <p className="eyebrow">{locale === "en" ? "Role" : "角色"}</p>
-            <h3>
-              {locale === "en" ? (
-                promptCopy.role.en
-              ) : (
-                <>
-                  视觉设计师 /
-                  <br />
-                  提示词系统设计 /
-                  <br />
-                  Vibe Coding 搭建者
-                </>
-              )}
-            </h3>
-          </Reveal>
-          <Reveal>
-            <p className="eyebrow">{locale === "en" ? "Tools" : "工具"}</p>
-            <div className="prompt-project-tool-list">
-              {promptCopy.tools[locale].map((tool) => (
-                <span key={tool}>{tool}</span>
-              ))}
-            </div>
-          </Reveal>
         </section>
 
         <section className={`prompt-project-links ${locale === "zh" ? "is-zh" : "is-en"}`}>
@@ -1346,11 +1407,34 @@ function PromptGeneratorDetail() {
           </Reveal>
         </section>
 
-        <section className="prompt-project-next">
+        <Link className="prompt-project-next" to="/work/visual-qa-workbench">
           <p className="eyebrow">{locale === "en" ? "Next Project" : "下一个项目"}</p>
-          <h2>{locale === "en" ? "Next case study placeholder." : "下一个项目占位。"}</h2>
-        </section>
+          <h2>VISUAL QA BOARD <span aria-hidden="true">↗</span></h2>
+        </Link>
       </div>
+      {activeImage ? (
+        <div
+          className="prompt-image-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={locale === "en" ? "Image preview" : "图片放大预览"}
+          onClick={() => setActiveImage(null)}
+        >
+          <button
+            type="button"
+            className="prompt-image-lightbox-close"
+            onClick={() => setActiveImage(null)}
+            aria-label={locale === "en" ? "Close preview" : "关闭预览"}
+          >
+            ×
+          </button>
+          <img
+            src={activeImage}
+            alt={locale === "en" ? "Project image preview" : "项目图片放大预览"}
+            onClick={(event) => event.stopPropagation()}
+          />
+        </div>
+      ) : null}
     </article>
   );
 }
@@ -1787,16 +1871,149 @@ function AigcMerchantAdvertisingDetail() {
   );
 }
 
+const visualQaDetailImages = [2, 3, 4].map(
+  (index) => `/images/works/visual-qa-workbench/outputs/${index}.png`,
+);
+
+function VisualQaWorkbenchDetail() {
+  const { locale } = useAppSettings();
+  const [activeImage, setActiveImage] = useState<string | null>(null);
+  const heroImage = "/images/works/visual-qa-workbench/outputs/1.png";
+
+  useEffect(() => {
+    if (!activeImage) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveImage(null);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeImage]);
+
+  return (
+    <article className="visual-qa-detail">
+      <div className="visual-qa-wrap">
+        <div className="visual-qa-back">
+          <Link className="text-link" to="/work">
+            {locale === "en" ? "Back to Work" : "返回作品"}
+          </Link>
+        </div>
+
+        <header className="visual-qa-head">
+          <Reveal className="visual-qa-hero-copy">
+            <p className="eyebrow">2026 / VIBE CODING / VISUAL QA TOOL</p>
+            <h1>VISUAL QA<br />BOARD</h1>
+            <div className="visual-qa-intro">
+              <p>
+              {locale === "en"
+                  ? "A batch visual quality-assurance board for importing large image sets and checking dimensions, aspect ratios, formats, file sizes, and resolution against predefined delivery rules."
+                  : "一个面向批量图片交付的视觉质量检测工具，可快速检查尺寸、比例、格式、文件大小与分辨率是否符合预设要求。"}
+              </p>
+              <p>
+                {locale === "en"
+                  ? "Teams can create presets for images of different dimensions, aspect ratios, and production specifications, then inspect hundreds or thousands of assets at once and export CSV reports for cross-team review, project reporting, and pass-rate verification."
+                  : "支持为不同尺寸、比例和各类生产规格的图片建立预设，批量导入成百上千张图片完成自动核查，并导出 CSV 表格，便于同事或其他部门复核、汇报项目进度，以及统计图片生成的合格率。"}
+              </p>
+              <p>
+                {locale === "en"
+                  ? "By replacing manual, image-by-image inspection of detailed file information, the tool significantly improves review efficiency and delivers zero-error validation against configured rules."
+                  : "它省去了人工逐张打开图片、核验详细信息的时间，显著提升图片验收效率，并可在已配置的规则范围内实现零误差核验。"}
+              </p>
+            </div>
+            <div className="visual-qa-capabilities" aria-label={locale === "en" ? "Core capabilities" : "核心能力"}>
+              <span>{locale === "en" ? "Batch Import" : "批量导入"}</span>
+              <span>{locale === "en" ? "Rule Presets" : "规则预设"}</span>
+              <span>{locale === "en" ? "CSV Export" : "CSV 导出"}</span>
+            </div>
+            <a
+              className="visual-qa-github"
+              href="https://github.com/shiwenwen666-code/Visual-QA-Board"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub <span aria-hidden="true">↗</span>
+            </a>
+          </Reveal>
+
+          <Reveal className="visual-qa-hero-media">
+            <button
+              type="button"
+              className="visual-qa-image-button"
+              onClick={() => setActiveImage(heroImage)}
+              aria-label={locale === "en" ? "View overview image larger" : "放大查看项目总览图"}
+            >
+              <img src={heroImage} alt={locale === "en" ? "Visual QA Board overview" : "Visual QA Board 项目总览"} />
+              <span>{locale === "en" ? "View larger" : "放大查看"} ↗</span>
+            </button>
+          </Reveal>
+        </header>
+
+        <section className="visual-qa-details">
+          <Reveal className="visual-qa-section-head">
+            <p className="eyebrow">INTERFACE DETAILS / 界面细节</p>
+            <h2>{locale === "en" ? "From rule presets to batch review results." : "从规则预设，到批量核查与结果汇总。"}</h2>
+          </Reveal>
+          <div className="visual-qa-gallery" aria-label={locale === "en" ? "Interface details" : "界面细节"}>
+            {visualQaDetailImages.map((image, index) => (
+              <Reveal className="visual-qa-frame" key={image}>
+                <button
+                  type="button"
+                  className="visual-qa-image-button"
+                  onClick={() => setActiveImage(image)}
+                  aria-label={locale === "en" ? `View detail ${index + 1} larger` : `放大查看界面细节 ${index + 1}`}
+                >
+                  <img
+                    src={image}
+                    alt={locale === "en" ? `Visual QA detail ${index + 1}` : `Visual QA 界面细节 ${index + 1}`}
+                  />
+                  <span>{locale === "en" ? "View larger" : "放大查看"} ↗</span>
+                </button>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      </div>
+      {activeImage ? (
+        <div
+          className="prompt-image-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={locale === "en" ? "Image preview" : "图片放大预览"}
+          onClick={() => setActiveImage(null)}
+        >
+          <button
+            type="button"
+            className="prompt-image-lightbox-close"
+            onClick={() => setActiveImage(null)}
+            aria-label={locale === "en" ? "Close preview" : "关闭预览"}
+          >
+            ×
+          </button>
+          <img src={activeImage} alt={locale === "en" ? "Visual QA preview" : "Visual QA 图片预览"} onClick={(event) => event.stopPropagation()} />
+        </div>
+      ) : null}
+    </article>
+  );
+}
+
 export function ProjectDetail() {
   const { slug } = useParams();
   const { locale } = useAppSettings();
 
-  if (slug === "aigc-merchant-advertising") {
-    return <AigcMerchantAdvertisingDetail />;
+  if (
+    slug === "aigc-merchant-advertising" ||
+    slug === "aigc-advertising-workflow"
+  ) {
+    return <CaseThreePdfPresentation />;
   }
 
   if (slug === "prompt-generator-tool") {
     return <PromptGeneratorDetail />;
+  }
+
+  if (slug === "visual-qa-workbench") {
+    return <VisualQaWorkbenchDetail />;
   }
 
   if (slug === "alibaba-social-visual-system") {
@@ -1809,6 +2026,10 @@ export function ProjectDetail() {
 
   if (slug === "yacht-poster-template-system") {
     return <YachtPosterDetail />;
+  }
+
+  if (slug === "merchant-alliance-filming-project") {
+    return <CaseFiveShootingPresentation locale={locale} />;
   }
 
   const project = projects.find((item) => item.slug === slug) ?? projects[0];
