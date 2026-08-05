@@ -141,14 +141,16 @@ function ToolProjectCard({ project }: { project: FeaturedWorkProject }) {
   const content = (
     <>
       <div className="selected-tool-media" aria-hidden="true">
-        <img
-          src={project.cover}
-          alt=""
-          loading="lazy"
-          onError={(event) => {
-            event.currentTarget.style.display = "none";
-          }}
-        />
+        {project.cover ? (
+          <img
+            src={project.cover}
+            alt=""
+            loading="lazy"
+            onError={(event) => {
+              event.currentTarget.style.display = "none";
+            }}
+          />
+        ) : null}
       </div>
       <div className="selected-tool-copy">
         <span>{project.category[locale]}</span>

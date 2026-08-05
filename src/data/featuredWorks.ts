@@ -284,7 +284,7 @@ export const featuredWorkProjects: FeaturedWorkProject[] = [
       en: ["2026", "Creative Tools"],
       zh: ["2026", "创意工具"],
     },
-    cover: "/images/selected-works/vibe-coding-experiments.jpg",
+    cover: "",
     mediaType: "image",
     link: "/work",
     scale: "experiment",

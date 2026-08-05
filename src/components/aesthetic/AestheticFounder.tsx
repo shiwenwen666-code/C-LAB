@@ -23,7 +23,7 @@ export function AestheticFounder({ eyebrow, title, subtitle, name, role, body, t
           </div>
           <div className="aesthetic-founder-photo">
             <img
-              src="/images/works/aesthetic-intelligence-bureau/avatar.jpg"
+              src="/images/profile/profile.jpg"
               alt={name}
               onError={(event) => {
                 event.currentTarget.style.display = "none";
