@@ -5,14 +5,14 @@ const FIGMA_FRAME = {
   height: 17756,
   gifs: [
     {
-      src: "asset-17.gif",
+      src: "asset-17.webp",
       x: 126,
       y: 14464,
       width: 835,
       height: 1115,
     },
     {
-      src: "asset-18.gif",
+      src: "asset-18.webp",
       x: 1390,
       y: 13084,
       width: 430,
@@ -36,7 +36,7 @@ export function CaseOneFigmaPresentation() {
       <div className="case-one-figma-presentation__canvas">
         <img
           className="case-one-figma-presentation__long-image"
-          src={asset("case01-presentation-full.png")}
+          src={asset("case01-presentation-full.jpg")}
           alt="Alibaba.com social visual system upgrade case presentation"
           decoding="async"
           fetchPriority="high"

@@ -1,11 +1,11 @@
 import "./CaseThreePdfPresentation.css";
 
 const CASE_THREE_PRESENTATION_IMAGE =
-  "/images/works/aigc-advertising/presentation/case03-presentation-full.png";
+  "/images/works/aigc-advertising/presentation/case03-presentation-full.webp";
 
 const CASE_THREE_GIFS = {
-  hero: "/images/works/aigc-advertising/gifs/1.gif",
-  productScene: "/images/works/aigc-advertising/gifs/2.gif",
+  hero: "/images/works/aigc-advertising/gifs/1.webp",
+  productScene: "/images/works/aigc-advertising/gifs/2.webp",
 };
 
 export function CaseThreePdfPresentation() {

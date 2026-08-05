@@ -258,7 +258,7 @@ const cardWaveRanges: [number, number][] = orbitCards.map((_, index) => {
   return [start, start + 0.064];
 });
 
-const orbitImageExtensions = ["png", "jpg", "jpeg", "webp", "gif", "avif"];
+const orbitImageExtensions = ["webp", "png", "jpg", "jpeg", "gif", "avif"];
 
 function tryNextOrbitImage(event: React.SyntheticEvent<HTMLImageElement>, fallbackSrc: string) {
   const image = event.currentTarget;

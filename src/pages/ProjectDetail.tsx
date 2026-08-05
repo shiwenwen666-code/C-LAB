@@ -56,17 +56,17 @@ const promptCopy = {
 };
 
 const interfaceImages = [
-  "/images/works/prompt-generator/outputs/2.png",
-  "/images/works/prompt-generator/outputs/3.png",
+  "/images/works/prompt-generator/outputs/2.webp",
+  "/images/works/prompt-generator/outputs/3.webp",
 ];
 
 const outputImages = [
-  "/images/works/prompt-generator/outputs/4.png",
-  "/images/works/prompt-generator/outputs/5.png",
-  "/images/works/prompt-generator/outputs/6.png",
-  "/images/works/prompt-generator/outputs/7.png",
-  "/images/works/prompt-generator/outputs/8.png",
-  "/images/works/prompt-generator/outputs/9.png",
+  "/images/works/prompt-generator/outputs/4.webp",
+  "/images/works/prompt-generator/outputs/5.webp",
+  "/images/works/prompt-generator/outputs/6.webp",
+  "/images/works/prompt-generator/outputs/7.webp",
+  "/images/works/prompt-generator/outputs/8.webp",
+  "/images/works/prompt-generator/outputs/9.webp",
 ];
 
 const yachtPosterCopy = {
@@ -1309,10 +1309,10 @@ function PromptGeneratorDetail() {
 
           <Reveal className="prompt-project-cover">
             <ProjectImageBlock
-              src="/images/works/prompt-generator/outputs/1.png"
+              src="/images/works/prompt-generator/outputs/1.webp"
               label={locale === "en" ? "Cover / Prompt System" : "封面 / 提示词系统"}
               viewLabel={locale === "en" ? "View larger" : "放大查看"}
-              onOpen={() => setActiveImage("/images/works/prompt-generator/outputs/1.png")}
+              onOpen={() => setActiveImage("/images/works/prompt-generator/outputs/1.webp")}
             />
           </Reveal>
         </header>
@@ -1872,13 +1872,13 @@ function AigcMerchantAdvertisingDetail() {
 }
 
 const visualQaDetailImages = [2, 3, 4].map(
-  (index) => `/images/works/visual-qa-workbench/outputs/${index}.png`,
+  (index) => `/images/works/visual-qa-workbench/outputs/${index}.webp`,
 );
 
 function VisualQaWorkbenchDetail() {
   const { locale } = useAppSettings();
   const [activeImage, setActiveImage] = useState<string | null>(null);
-  const heroImage = "/images/works/visual-qa-workbench/outputs/1.png";
+  const heroImage = "/images/works/visual-qa-workbench/outputs/1.webp";
 
   useEffect(() => {
     if (!activeImage) return;

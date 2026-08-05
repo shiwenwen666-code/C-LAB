@@ -1,7 +1,7 @@
 import "./CaseFourPdfPresentation.css";
 
 const CASE_FOUR_PRESENTATION_IMAGE =
-  "/images/works/aesthetic-intelligence-bureau/presentation/case04-presentation-full.png";
+  "/images/works/aesthetic-intelligence-bureau/presentation/case04-presentation-full.jpg";
 
 const AESTHETIC_SKILL_REPOSITORY =
   "https://github.com/shiwenwen666-code/visual-dictionary";

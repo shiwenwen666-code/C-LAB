@@ -1,13 +1,13 @@
 import "./CaseTwoPdfPresentation.css";
 
 const CASE_TWO_PRESENTATION_IMAGE =
-  "/images/works/new-power-awards/presentation/case02-presentation-full.png";
+  "/images/works/new-power-awards/presentation/case02-presentation-full.jpg";
 
 const CASE_TWO_GIFS = {
-  hero: "/images/works/new-power-awards/gifs/1.gif",
-  portrait: "/images/works/new-power-awards/gifs/2.gif",
-  projectionBottom: "/images/works/new-power-awards/gifs/3.gif",
-  projectionTop: "/images/works/new-power-awards/gifs/4.gif",
+  hero: "/images/works/new-power-awards/gifs/1.webp",
+  portrait: "/images/works/new-power-awards/gifs/2.webp",
+  projectionBottom: "/images/works/new-power-awards/gifs/3.webp",
+  projectionTop: "/images/works/new-power-awards/gifs/4.webp",
 };
 
 export function CaseTwoPdfPresentation() {
