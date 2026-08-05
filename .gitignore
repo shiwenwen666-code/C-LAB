@@ -1,6 +1,6 @@
 # Local working copies and generated scratch space
-outputs/
-work/
+/outputs/
+/work/
 
 # OS metadata
 .DS_Store
