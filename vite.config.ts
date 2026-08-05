@@ -9,7 +9,7 @@ function rewritePublicAssetPaths(base: string) {
       if (base === "/" || id.includes("node_modules")) return null;
 
       const rewritten = code.replace(
-        /(["'`(])\/(images|media|videos)\//g,
+        /(["'`(])\/(images|media|videos|logos)\//g,
         `$1${base}$2/`,
       );
 
