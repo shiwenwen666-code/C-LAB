@@ -149,7 +149,7 @@ const copy = {
     },
     founder: {
       eyebrow: "ABOUT",
-      title: "CREATOR",
+      title: "创作者",
       subtitle: "",
       name: "施文文 / Cyan",
       role: "VISUAL DESIGNER · BRAND DESIGNER · AIGC EXPLORER",

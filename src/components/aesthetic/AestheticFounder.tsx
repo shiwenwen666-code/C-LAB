@@ -23,13 +23,12 @@ export function AestheticFounder({ eyebrow, title, subtitle, name, role, body, t
           </div>
           <div className="aesthetic-founder-photo">
             <img
-              src="/images/profile/profile.jpg"
+              src="/images/works/aesthetic-intelligence-bureau/avatar.jpg"
               alt={name}
               onError={(event) => {
                 event.currentTarget.style.display = "none";
               }}
             />
-            <strong>审美<br />情报局</strong>
           </div>
         </div>
         <div className="aesthetic-founder-copy">
